@@ -1,4 +1,4 @@
-package com.company;
+package com.wucc;
 
 public class Main {
 
