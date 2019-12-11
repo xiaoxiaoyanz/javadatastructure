@@ -1,0 +1,171 @@
+absdfw0gihtih0er;lh[werlksgsf
+{
+"condition": "",
+"procedure": [{
+"desc": "经济分类唯一性校验",
+"sql": "select  count(*) WCOUNT  from pd_project where row_id='@PDM0149$' and NOT_REVIEW_REASON  is  null",
+"set": "PD005",
+"id": "PD005",
+"parentId": "procedure",
+"condition": [{
+"expression": {
+"name": "#PD005.WCOUNT",
+"character": "eq",
+"value": "1"
+},
+"true": "PD010",
+"false": "PD006"
+}]
+},
+{
+"desc": "判断不评审原因是否为已达到部门评审比例，暂不评审",
+"sql": "select  count(*) LCOUNT  from pd_project where row_id='@PDM0149$' and NOT_REVIEW_REASON  = '05'",
+"set": "PD006",
+"id": "PD006",
+"parentId": "procedure",
+"condition": [{
+"expression": {
+"name": "#PD006.LCOUNT",
+"character": "eq",
+"value": "0"
+},
+"true": "PD007",
+"false": "",
+"continue": "false",
+"tips":"#2019年起，按规定应评审的项目要全部评审，请修改!\n"
+}]
+},
+{
+"desc": "判断不评审原因是否为支出总额100万以下的项目",
+"sql": "select  count(*) QCOUNT  from pd_project where row_id='@PDM0149$' and NOT_REVIEW_REASON  = '04'",
+"set": "PD007",
+"id": "PD007",
+"parentId": "procedure",
+"condition": [{
+"expression": {
+"name": "#PD007.QCOUNT",
+"character": "eq",
+"value": "1"
+},
+"true": "PD008",
+"false": "PD010"
+}]
+},
+{
+"desc": "判断项目类别",
+"sql": "select count(*) XCOUNT  from PD_PROJECT t where row_id = '@PDM0149$' and PROJ_TYPE = '01'",
+"set": "PD008",
+"id": "PD008",
+"parentId": "procedure",
+"condition": [{
+"expression": {
+"name": "#PD008.XCOUNT",
+"character": "eq",
+"value": "1"
+},
+"true": "PDCC008",
+"false": "PD009"
+}]
+},
+{
+"desc": "项目类别为专项业务费项目",
+"sql": "select count(*) BCOUNT FROM (select sum(c.EXP_ONEPLAN)  TOTAL_PLAN from (select m.row_id, m.ANNUAL MANNUAL, n.ANNUAL NANNUAL, n.EXP_ONEPLAN from pd_project m left join PD_PROJ_EXP_ONEPLAN n on m.row_id = n.from_id) c where c.row_id = '@PDM0149$' and NANNUAL in (MANNUAL+1,MANNUAL+2,MANNUAL+3)) d where d.TOTAL_PLAN >100  or d.TOTAL_PLAN =100",
+"set": "PDCC008",
+"id": "PDCC008",
+"parentId": "procedure",
+"condition": [{
+"expression": {
+"name": "#PDCC008.BCOUNT",
+"character": "eq",
+"value": "0"
+},
+"true": "PD010",
+"false": "",
+"continue": "false",
+"tips":"#专项业务费项目时，预算年度至预算年度+2的支出计划总和大于等于100万时不允许保存\n"
+}]
+},
+{
+"desc": "项目类别为其他项目",
+"sql": "select count(*) JCOUNT FROM (select sum(c.EXP_ONEPLAN)  TOTAL_PLAN from (select m.row_id, m.ANNUAL MANNUAL, n.ANNUAL NANNUAL, n.EXP_ONEPLAN from pd_project m left join PD_PROJ_EXP_ONEPLAN n on m.row_id = n.from_id) c where c.row_id = '@PDM0149$' ) d where d.TOTAL_PLAN >100  or d.TOTAL_PLAN =100",
+"set": "PD009",
+"id": "PD009",
+"parentId": "procedure",
+"condition": [{
+"expression": {
+"name": "#PD009.JCOUNT",
+"character": "eq",
+"value": "0"
+},
+"true": "PD010",
+"false": "",
+"continue": "false",
+"tips":"#所有年度的支出计划总和大于等于100万时不允许保存\n"
+}]
+},
+{
+"desc": "不做任何处理",
+"id": "PD010",
+"set": "PD010",
+"parentId": "procedure",
+"sql": ""
+}
+
+]
+}
+
+select count(1) count
+from (select t.fiscal fiscal, t.econ_type econ_type, count(1) COUNT
+from pd_econ_type t
+where t.from_id = 'B690C3BD9C2247549A3924607644FE41'
+group by t.fiscal, t.econ_type) f  where f.count > 1
+
+
+{
+"condition": "",
+"procedure": [{
+"desc": "经济分类唯一性校验",
+"sql": "select count(1) Ecount  from (select t.fiscal fiscal, t.econ_type econ_type, count(1) TCOUNT from pd_econ_type t where t.from_id = '@PDM0149$' group by t.fiscal, t.econ_type) f  where f.tcount > 1",
+"set": "PDECON005",
+"id": "PDECON005",
+"parentId": "procedure",
+"condition": [{
+"expression": {
+"name": "#PDECON005.ECOUNT",
+"character": "eq",
+"value": "0"
+},
+"true": "PDECON06",
+"false": "",
+"continue": "false",
+"tips":"#存在相同年份相同经济分类科目的数据\n"
+}]
+},
+{
+"desc": "支出计划等于经济分类合计校验",
+"sql": "select count(*) HCOUNT  from (select fiscal,sum(appl_fina_num) appl_fina_num_sum  ,avg(exp_oneplan) exp_oneplan  from (select * from (select p.from_id     pfrom_id,p.appl_fina_num, p.fiscal, e.from_id     efrom_id,e.annual,e.exp_oneplan from pd_econ_type p left join pd_proj_exp_plan e on p.fiscal = e.annual and p.from_id = e.from_id) t  where t.pfrom_id = '@PDM0149$'  )  g   group by fiscal ) h where h.appl_fina_num_sum != h.exp_oneplan",
+"set": "PDECON006",
+"id": "PDECON006",
+"parentId": "procedure",
+"condition": [{
+"expression": {
+"name": "#PDECON006.HCOUNT",
+"character": "eq",
+"value": "0"
+},
+"true": "PDECON010",
+"false": "",
+"continue": "false",
+"tips":"#支出计划不等于经济分类合计\n"
+}]
+},
+{
+"desc": "不做任何处理",
+"id": "PDECON010",
+"set": "PDECON010",
+"parentId": "procedure",
+"sql": ""
+}
+
+]
+}
