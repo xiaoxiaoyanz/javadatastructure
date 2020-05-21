@@ -11,5 +11,7 @@ public class TestIntern {
         String str4 = str3.intern();
 
         System.out.println(str4 == str3);
+
+
     }
 }
