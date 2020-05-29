@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wucc.createtable.easycode.dao.ApslSysTableIndexDao">
+
+    <resultMap type="com.wucc.createtable.easycode.entity.ApslSysTableIndex" id="ApslSysTableIndexMap">
+        <result property="indexId" column="INDEX_ID" jdbcType="VARCHAR"/>
+        <result property="tableId" column="TABLE_ID" jdbcType="VARCHAR"/>
+        <result property="nonUnique" column="NON_UNIQUE" jdbcType="VARCHAR"/>
+        <result property="keyName" column="KEY_NAME" jdbcType="VARCHAR"/>
+        <result property="seqInDex" column="SEQ_IN_DEX" jdbcType="INTEGER"/>
+        <result property="collation" column="COLLATION" jdbcType="VARCHAR"/>
+        <result property="cardinality" column="CARDINALITY" jdbcType="INTEGER"/>
+        <result property="indexType" column="INDEX_TYPE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ApslSysTableIndexMap">
+        select
+          INDEX_ID, TABLE_ID, NON_UNIQUE, KEY_NAME, SEQ_IN_DEX, COLLATION, CARDINALITY, INDEX_TYPE
+        from yonyou.apsl_sys_table_index
+        where INDEX_ID = #{indexId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ApslSysTableIndexMap">
+        select
+          INDEX_ID, TABLE_ID, NON_UNIQUE, KEY_NAME, SEQ_IN_DEX, COLLATION, CARDINALITY, INDEX_TYPE
+        from yonyou.apsl_sys_table_index
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ApslSysTableIndexMap">
+        select
+          INDEX_ID, TABLE_ID, NON_UNIQUE, KEY_NAME, SEQ_IN_DEX, COLLATION, CARDINALITY, INDEX_TYPE
+        from yonyou.apsl_sys_table_index
+        <where>
+            <if test="indexId != null and indexId != ''">
+                and INDEX_ID = #{indexId}
+            </if>
+            <if test="tableId != null and tableId != ''">
+                and TABLE_ID = #{tableId}
+            </if>
+            <if test="nonUnique != null and nonUnique != ''">
+                and NON_UNIQUE = #{nonUnique}
+            </if>
+            <if test="keyName != null and keyName != ''">
+                and KEY_NAME = #{keyName}
+            </if>
+            <if test="seqInDex != null">
+                and SEQ_IN_DEX = #{seqInDex}
+            </if>
+            <if test="collation != null and collation != ''">
+                and COLLATION = #{collation}
+            </if>
+            <if test="cardinality != null">
+                and CARDINALITY = #{cardinality}
+            </if>
+            <if test="indexType != null and indexType != ''">
+                and INDEX_TYPE = #{indexType}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="indexId" useGeneratedKeys="true">
+        insert into yonyou.apsl_sys_table_index(TABLE_ID, NON_UNIQUE, KEY_NAME, SEQ_IN_DEX, COLLATION, CARDINALITY, INDEX_TYPE)
+        values (#{tableId}, #{nonUnique}, #{keyName}, #{seqInDex}, #{collation}, #{cardinality}, #{indexType})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.apsl_sys_table_index
+        <set>
+            <if test="tableId != null and tableId != ''">
+                TABLE_ID = #{tableId},
+            </if>
+            <if test="nonUnique != null and nonUnique != ''">
+                NON_UNIQUE = #{nonUnique},
+            </if>
+            <if test="keyName != null and keyName != ''">
+                KEY_NAME = #{keyName},
+            </if>
+            <if test="seqInDex != null">
+                SEQ_IN_DEX = #{seqInDex},
+            </if>
+            <if test="collation != null and collation != ''">
+                COLLATION = #{collation},
+            </if>
+            <if test="cardinality != null">
+                CARDINALITY = #{cardinality},
+            </if>
+            <if test="indexType != null and indexType != ''">
+                INDEX_TYPE = #{indexType},
+            </if>
+        </set>
+        where INDEX_ID = #{indexId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.apsl_sys_table_index where INDEX_ID = #{indexId}
+    </delete>
+
+</mapper>

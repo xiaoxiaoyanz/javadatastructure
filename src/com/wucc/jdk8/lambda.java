@@ -34,6 +34,11 @@ public class lambda {
 			new User("lisi",40,4000),
 			new User("wangwu",50,5000)
 			);
+	List<User> userList01 = new ArrayList<User>(){
+		{
+			add(new User("wan",300,4000));
+		}
+	};
 
 	public List<User> filterUser(List<User> userList){
 		List<User> emp = new ArrayList<>();
@@ -97,7 +102,34 @@ public class lambda {
 
 	}
 
-	//使用lambda表达式
+	//优化方式三：使用lambda表达式
+
+	@Test
+	public void test07() {
+		List<User> users;
+		users = fitlerUserByDesign(userList, (e) -> "zhangsan".equals(e.getName()));
+
+	    /*	for (User user : users) {
+			System.out.println(user);
+		}*/
+	    users.forEach(System.out::println);
+
+	}
+
+	//优化方式四：
+	@Test
+	public void test08() {
+		userList.stream()
+				//.filter((e) -> "zhangsan".equals(e.getName()))
+				.limit(1)
+				.forEach(System.out::println);
+		userList.stream()
+				.map(User::getName)
+				.forEach(System.out::println);
+
+
+
+	}
 
 
 }

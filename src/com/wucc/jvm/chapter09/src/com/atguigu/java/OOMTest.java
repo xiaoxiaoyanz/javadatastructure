@@ -1,6 +1,7 @@
 package com.wucc.jvm.chapter09.src.com.atguigu.java;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.ClassWriter;
+
+import jdk.internal.org.objectweb.asm.ClassWriter;
 import jdk.internal.org.objectweb.asm.Opcodes;
 
 /**

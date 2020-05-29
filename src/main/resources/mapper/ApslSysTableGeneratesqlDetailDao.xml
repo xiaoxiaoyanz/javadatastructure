@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wucc.createtable.easycode.dao.ApslSysTableGeneratesqlDetailDao">
+
+    <resultMap type="com.wucc.createtable.easycode.entity.ApslSysTableGeneratesqlDetail" id="ApslSysTableGeneratesqlDetailMap">
+        <result property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="generatesqlId" column="GENERATESQL_ID" jdbcType="VARCHAR"/>
+        <result property="generatesql" column="GENERATESQL" jdbcType="OTHER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ApslSysTableGeneratesqlDetailMap">
+        select
+          ID, GENERATESQL_ID, GENERATESQL
+        from yonyou.apsl_sys_table_generatesql_detail
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ApslSysTableGeneratesqlDetailMap">
+        select
+          ID, GENERATESQL_ID, GENERATESQL
+        from yonyou.apsl_sys_table_generatesql_detail
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ApslSysTableGeneratesqlDetailMap">
+        select
+          ID, GENERATESQL_ID, GENERATESQL
+        from yonyou.apsl_sys_table_generatesql_detail
+        <where>
+            <if test="id != null and id != ''">
+                and ID = #{id}
+            </if>
+            <if test="generatesqlId != null and generatesqlId != ''">
+                and GENERATESQL_ID = #{generatesqlId}
+            </if>
+            <if test="generatesql != null">
+                and GENERATESQL = #{generatesql}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into yonyou.apsl_sys_table_generatesql_detail(GENERATESQL_ID, GENERATESQL)
+        values (#{generatesqlId}, #{generatesql})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.apsl_sys_table_generatesql_detail
+        <set>
+            <if test="generatesqlId != null and generatesqlId != ''">
+                GENERATESQL_ID = #{generatesqlId},
+            </if>
+            <if test="generatesql != null">
+                GENERATESQL = #{generatesql},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.apsl_sys_table_generatesql_detail where ID = #{id}
+    </delete>
+
+</mapper>

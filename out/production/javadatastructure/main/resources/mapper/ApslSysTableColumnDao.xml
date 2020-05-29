@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wucc.createtable.easycode.dao.ApslSysTableColumnDao">
+
+    <resultMap type="com.wucc.createtable.easycode.entity.ApslSysTableColumn" id="ApslSysTableColumnMap">
+        <result property="columnId" column="COLUMN_ID" jdbcType="VARCHAR"/>
+        <result property="tableId" column="TABLE_ID" jdbcType="VARCHAR"/>
+        <result property="metadataId" column="METADATA_ID" jdbcType="VARCHAR"/>
+        <result property="columnName" column="COLUMN_NAME" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE" jdbcType="VARCHAR"/>
+        <result property="isNullable" column="IS_NULLABLE" jdbcType="VARCHAR"/>
+        <result property="maxLength" column="MAX_LENGTH" jdbcType="NUMERIC"/>
+        <result property="decimalPlace" column="DECIMAL_PLACE" jdbcType="NUMERIC"/>
+        <result property="sysType" column="SYS_TYPE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ApslSysTableColumnMap">
+        select
+          COLUMN_ID, TABLE_ID, METADATA_ID, COLUMN_NAME, TYPE, IS_NULLABLE, MAX_LENGTH, DECIMAL_PLACE, SYS_TYPE
+        from yonyou.apsl_sys_table_column
+        where COLUMN_ID = #{columnId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ApslSysTableColumnMap">
+        select
+          COLUMN_ID, TABLE_ID, METADATA_ID, COLUMN_NAME, TYPE, IS_NULLABLE, MAX_LENGTH, DECIMAL_PLACE, SYS_TYPE
+        from yonyou.apsl_sys_table_column
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ApslSysTableColumnMap">
+        select
+          COLUMN_ID, TABLE_ID, METADATA_ID, COLUMN_NAME, TYPE, IS_NULLABLE, MAX_LENGTH, DECIMAL_PLACE, SYS_TYPE
+        from yonyou.apsl_sys_table_column
+        <where>
+            <if test="columnId != null and columnId != ''">
+                and COLUMN_ID = #{columnId}
+            </if>
+            <if test="tableId != null and tableId != ''">
+                and TABLE_ID = #{tableId}
+            </if>
+            <if test="metadataId != null and metadataId != ''">
+                and METADATA_ID = #{metadataId}
+            </if>
+            <if test="columnName != null and columnName != ''">
+                and COLUMN_NAME = #{columnName}
+            </if>
+            <if test="type != null and type != ''">
+                and TYPE = #{type}
+            </if>
+            <if test="isNullable != null and isNullable != ''">
+                and IS_NULLABLE = #{isNullable}
+            </if>
+            <if test="maxLength != null">
+                and MAX_LENGTH = #{maxLength}
+            </if>
+            <if test="decimalPlace != null">
+                and DECIMAL_PLACE = #{decimalPlace}
+            </if>
+            <if test="sysType != null and sysType != ''">
+                and SYS_TYPE = #{sysType}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="columnId" useGeneratedKeys="true">
+        insert into yonyou.apsl_sys_table_column(TABLE_ID, METADATA_ID, COLUMN_NAME, TYPE, IS_NULLABLE, MAX_LENGTH, DECIMAL_PLACE, SYS_TYPE)
+        values (#{tableId}, #{metadataId}, #{columnName}, #{type}, #{isNullable}, #{maxLength}, #{decimalPlace}, #{sysType})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.apsl_sys_table_column
+        <set>
+            <if test="tableId != null and tableId != ''">
+                TABLE_ID = #{tableId},
+            </if>
+            <if test="metadataId != null and metadataId != ''">
+                METADATA_ID = #{metadataId},
+            </if>
+            <if test="columnName != null and columnName != ''">
+                COLUMN_NAME = #{columnName},
+            </if>
+            <if test="type != null and type != ''">
+                TYPE = #{type},
+            </if>
+            <if test="isNullable != null and isNullable != ''">
+                IS_NULLABLE = #{isNullable},
+            </if>
+            <if test="maxLength != null">
+                MAX_LENGTH = #{maxLength},
+            </if>
+            <if test="decimalPlace != null">
+                DECIMAL_PLACE = #{decimalPlace},
+            </if>
+            <if test="sysType != null and sysType != ''">
+                SYS_TYPE = #{sysType},
+            </if>
+        </set>
+        where COLUMN_ID = #{columnId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.apsl_sys_table_column where COLUMN_ID = #{columnId}
+    </delete>
+
+</mapper>

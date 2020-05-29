@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wucc.createtable.easycode.dao.ApslSysMetadataDao">
+
+    <resultMap type="com.wucc.createtable.easycode.entity.ApslSysMetadata" id="ApslSysMetadataMap">
+        <result property="metadataId" column="METADATA_ID" jdbcType="VARCHAR"/>
+        <result property="columnName" column="COLUMN_NAME" jdbcType="VARCHAR"/>
+        <result property="title" column="TITLE" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE" jdbcType="VARCHAR"/>
+        <result property="maxLength" column="MAX_LENGTH" jdbcType="OTHER"/>
+        <result property="decimalPlace" column="DECIMAL_PLACE" jdbcType="OTHER"/>
+        <result property="sysType" column="SYS_TYPE" jdbcType="VARCHAR"/>
+        <result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ApslSysMetadataMap">
+        select
+          METADATA_ID, COLUMN_NAME, TITLE, TYPE, MAX_LENGTH, DECIMAL_PLACE, SYS_TYPE, REMARK
+        from yonyou.apsl_sys_metadata
+        where METADATA_ID = #{metadataId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ApslSysMetadataMap">
+        select
+          METADATA_ID, COLUMN_NAME, TITLE, TYPE, MAX_LENGTH, DECIMAL_PLACE, SYS_TYPE, REMARK
+        from yonyou.apsl_sys_metadata
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ApslSysMetadataMap">
+        select
+          METADATA_ID, COLUMN_NAME, TITLE, TYPE, MAX_LENGTH, DECIMAL_PLACE, SYS_TYPE, REMARK
+        from yonyou.apsl_sys_metadata
+        <where>
+            <if test="metadataId != null and metadataId != ''">
+                and METADATA_ID = #{metadataId}
+            </if>
+            <if test="columnName != null and columnName != ''">
+                and COLUMN_NAME = #{columnName}
+            </if>
+            <if test="title != null and title != ''">
+                and TITLE = #{title}
+            </if>
+            <if test="type != null and type != ''">
+                and TYPE = #{type}
+            </if>
+            <if test="maxLength != null">
+                and MAX_LENGTH = #{maxLength}
+            </if>
+            <if test="decimalPlace != null">
+                and DECIMAL_PLACE = #{decimalPlace}
+            </if>
+            <if test="sysType != null and sysType != ''">
+                and SYS_TYPE = #{sysType}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="metadataId" useGeneratedKeys="true">
+        insert into yonyou.apsl_sys_metadata(COLUMN_NAME, TITLE, TYPE, MAX_LENGTH, DECIMAL_PLACE, SYS_TYPE, REMARK)
+        values (#{columnName}, #{title}, #{type}, #{maxLength}, #{decimalPlace}, #{sysType}, #{remark})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.apsl_sys_metadata
+        <set>
+            <if test="columnName != null and columnName != ''">
+                COLUMN_NAME = #{columnName},
+            </if>
+            <if test="title != null and title != ''">
+                TITLE = #{title},
+            </if>
+            <if test="type != null and type != ''">
+                TYPE = #{type},
+            </if>
+            <if test="maxLength != null">
+                MAX_LENGTH = #{maxLength},
+            </if>
+            <if test="decimalPlace != null">
+                DECIMAL_PLACE = #{decimalPlace},
+            </if>
+            <if test="sysType != null and sysType != ''">
+                SYS_TYPE = #{sysType},
+            </if>
+            <if test="remark != null and remark != ''">
+                REMARK = #{remark},
+            </if>
+        </set>
+        where METADATA_ID = #{metadataId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.apsl_sys_metadata where METADATA_ID = #{metadataId}
+    </delete>
+
+</mapper>
