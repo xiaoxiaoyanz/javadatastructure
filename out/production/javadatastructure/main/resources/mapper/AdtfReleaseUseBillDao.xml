@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wucc.yonyou.dao.AdtfReleaseUseBillDao">
+
+    <resultMap type="com.wucc.yonyou.entity.AdtfReleaseUseBill" id="AdtfReleaseUseBillMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="code" column="CODE" jdbcType="VARCHAR"/>
+        <result property="version" column="VERSION" jdbcType="INTEGER"/>
+        <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+        <result property="docNoCode" column="DOC_NO_CODE" jdbcType="VARCHAR"/>
+        <result property="docNoName" column="DOC_NO_NAME" jdbcType="VARCHAR"/>
+        <result property="fundsYear" column="FUNDS_YEAR" jdbcType="INTEGER"/>
+        <result property="keyWords" column="KEY_WORDS" jdbcType="VARCHAR"/>
+        <result property="certifiNo" column="CERTIFI_NO" jdbcType="VARCHAR"/>
+        <result property="annexCount" column="ANNEX_COUNT" jdbcType="VARCHAR"/>
+        <result property="excuteMoney" column="EXCUTE_MONEY" jdbcType="NUMERIC"/>
+        <result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+        <result property="orgId" column="ORG_ID" jdbcType="VARCHAR"/>
+        <result property="orgCode" column="ORG_CODE" jdbcType="VARCHAR"/>
+        <result property="orgName" column="ORG_NAME" jdbcType="VARCHAR"/>
+        <result property="creatorId" column="CREATOR_ID" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="creationtime" column="CREATIONTIME" jdbcType="TIMESTAMP"/>
+        <result property="modifierId" column="MODIFIER_ID" jdbcType="VARCHAR"/>
+        <result property="modifier" column="MODIFIER" jdbcType="VARCHAR"/>
+        <result property="modifiedtime" column="MODIFIEDTIME" jdbcType="TIMESTAMP"/>
+        <result property="rgCode" column="RG_CODE" jdbcType="VARCHAR"/>
+        <result property="setYear" column="SET_YEAR" jdbcType="INTEGER"/>
+        <result property="sysType" column="SYS_TYPE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AdtfReleaseUseBillMap">
+        select
+          ID, CODE, VERSION, STATUS, DOC_NO_CODE, DOC_NO_NAME, FUNDS_YEAR, KEY_WORDS, CERTIFI_NO, ANNEX_COUNT, EXCUTE_MONEY, REMARK, ORG_ID, ORG_CODE, ORG_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, SYS_TYPE
+        from yonyou.adtf_release_use_bill
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AdtfReleaseUseBillMap">
+        select
+          ID, CODE, VERSION, STATUS, DOC_NO_CODE, DOC_NO_NAME, FUNDS_YEAR, KEY_WORDS, CERTIFI_NO, ANNEX_COUNT, EXCUTE_MONEY, REMARK, ORG_ID, ORG_CODE, ORG_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, SYS_TYPE
+        from yonyou.adtf_release_use_bill
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AdtfReleaseUseBillMap">
+        select
+          ID, CODE, VERSION, STATUS, DOC_NO_CODE, DOC_NO_NAME, FUNDS_YEAR, KEY_WORDS, CERTIFI_NO, ANNEX_COUNT, EXCUTE_MONEY, REMARK, ORG_ID, ORG_CODE, ORG_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, SYS_TYPE
+        from yonyou.adtf_release_use_bill
+        <where>
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="code != null and code != ''">
+                and CODE = #{code}
+            </if>
+            <if test="version != null">
+                and VERSION = #{version}
+            </if>
+            <if test="status != null and status != ''">
+                and STATUS = #{status}
+            </if>
+            <if test="docNoCode != null and docNoCode != ''">
+                and DOC_NO_CODE = #{docNoCode}
+            </if>
+            <if test="docNoName != null and docNoName != ''">
+                and DOC_NO_NAME = #{docNoName}
+            </if>
+            <if test="fundsYear != null">
+                and FUNDS_YEAR = #{fundsYear}
+            </if>
+            <if test="keyWords != null and keyWords != ''">
+                and KEY_WORDS = #{keyWords}
+            </if>
+            <if test="certifiNo != null and certifiNo != ''">
+                and CERTIFI_NO = #{certifiNo}
+            </if>
+            <if test="annexCount != null and annexCount != ''">
+                and ANNEX_COUNT = #{annexCount}
+            </if>
+            <if test="excuteMoney != null">
+                and EXCUTE_MONEY = #{excuteMoney}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+            <if test="orgId != null and orgId != ''">
+                and ORG_ID = #{orgId}
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                and ORG_CODE = #{orgCode}
+            </if>
+            <if test="orgName != null and orgName != ''">
+                and ORG_NAME = #{orgName}
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="creator != null and creator != ''">
+                and CREATOR = #{creator}
+            </if>
+            <if test="creationtime != null">
+                and CREATIONTIME = #{creationtime}
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                and MODIFIER_ID = #{modifierId}
+            </if>
+            <if test="modifier != null and modifier != ''">
+                and MODIFIER = #{modifier}
+            </if>
+            <if test="modifiedtime != null">
+                and MODIFIEDTIME = #{modifiedtime}
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                and RG_CODE = #{rgCode}
+            </if>
+            <if test="setYear != null">
+                and SET_YEAR = #{setYear}
+            </if>
+            <if test="sysType != null and sysType != ''">
+                and SYS_TYPE = #{sysType}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into yonyou.adtf_release_use_bill(CODE, VERSION, STATUS, DOC_NO_CODE, DOC_NO_NAME, FUNDS_YEAR, KEY_WORDS, CERTIFI_NO, ANNEX_COUNT, EXCUTE_MONEY, REMARK, ORG_ID, ORG_CODE, ORG_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, SYS_TYPE)
+        values (#{code}, #{version}, #{status}, #{docNoCode}, #{docNoName}, #{fundsYear}, #{keyWords}, #{certifiNo}, #{annexCount}, #{excuteMoney}, #{remark}, #{orgId}, #{orgCode}, #{orgName}, #{creatorId}, #{creator}, #{creationtime}, #{modifierId}, #{modifier}, #{modifiedtime}, #{rgCode}, #{setYear}, #{sysType})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.adtf_release_use_bill
+        <set>
+            <if test="code != null and code != ''">
+                CODE = #{code},
+            </if>
+            <if test="version != null">
+                VERSION = #{version},
+            </if>
+            <if test="status != null and status != ''">
+                STATUS = #{status},
+            </if>
+            <if test="docNoCode != null and docNoCode != ''">
+                DOC_NO_CODE = #{docNoCode},
+            </if>
+            <if test="docNoName != null and docNoName != ''">
+                DOC_NO_NAME = #{docNoName},
+            </if>
+            <if test="fundsYear != null">
+                FUNDS_YEAR = #{fundsYear},
+            </if>
+            <if test="keyWords != null and keyWords != ''">
+                KEY_WORDS = #{keyWords},
+            </if>
+            <if test="certifiNo != null and certifiNo != ''">
+                CERTIFI_NO = #{certifiNo},
+            </if>
+            <if test="annexCount != null and annexCount != ''">
+                ANNEX_COUNT = #{annexCount},
+            </if>
+            <if test="excuteMoney != null">
+                EXCUTE_MONEY = #{excuteMoney},
+            </if>
+            <if test="remark != null and remark != ''">
+                REMARK = #{remark},
+            </if>
+            <if test="orgId != null and orgId != ''">
+                ORG_ID = #{orgId},
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                ORG_CODE = #{orgCode},
+            </if>
+            <if test="orgName != null and orgName != ''">
+                ORG_NAME = #{orgName},
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                CREATOR_ID = #{creatorId},
+            </if>
+            <if test="creator != null and creator != ''">
+                CREATOR = #{creator},
+            </if>
+            <if test="creationtime != null">
+                CREATIONTIME = #{creationtime},
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                MODIFIER_ID = #{modifierId},
+            </if>
+            <if test="modifier != null and modifier != ''">
+                MODIFIER = #{modifier},
+            </if>
+            <if test="modifiedtime != null">
+                MODIFIEDTIME = #{modifiedtime},
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                RG_CODE = #{rgCode},
+            </if>
+            <if test="setYear != null">
+                SET_YEAR = #{setYear},
+            </if>
+            <if test="sysType != null and sysType != ''">
+                SYS_TYPE = #{sysType},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.adtf_release_use_bill where ID = #{id}
+    </delete>
+
+</mapper>

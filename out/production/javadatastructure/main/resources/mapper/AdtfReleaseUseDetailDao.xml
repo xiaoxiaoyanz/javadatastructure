@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wucc.yonyou.dao.AdtfReleaseUseDetailDao">
+
+    <resultMap type="com.wucc.yonyou.entity.AdtfReleaseUseDetail" id="AdtfReleaseUseDetailMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="billId" column="BILL_ID" jdbcType="INTEGER"/>
+        <result property="version" column="VERSION" jdbcType="INTEGER"/>
+        <result property="targetCode" column="TARGET_CODE" jdbcType="VARCHAR"/>
+        <result property="targetName" column="TARGET_NAME" jdbcType="VARCHAR"/>
+        <result property="subjectCode" column="SUBJECT_CODE" jdbcType="VARCHAR"/>
+        <result property="subjectName" column="SUBJECT_NAME" jdbcType="VARCHAR"/>
+        <result property="money" column="MONEY" jdbcType="NUMERIC"/>
+        <result property="rgCode" column="RG_CODE" jdbcType="VARCHAR"/>
+        <result property="setYear" column="SET_YEAR" jdbcType="INTEGER"/>
+        <result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+        <result property="orgId" column="ORG_ID" jdbcType="VARCHAR"/>
+        <result property="orgCode" column="ORG_CODE" jdbcType="VARCHAR"/>
+        <result property="orgName" column="ORG_NAME" jdbcType="VARCHAR"/>
+        <result property="creatorId" column="CREATOR_ID" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="creationtime" column="CREATIONTIME" jdbcType="TIMESTAMP"/>
+        <result property="modifierId" column="MODIFIER_ID" jdbcType="VARCHAR"/>
+        <result property="modifier" column="MODIFIER" jdbcType="VARCHAR"/>
+        <result property="modifiedtime" column="MODIFIEDTIME" jdbcType="TIMESTAMP"/>
+        <result property="sysType" column="SYS_TYPE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AdtfReleaseUseDetailMap">
+        select
+          ID, BILL_ID, VERSION, TARGET_CODE, TARGET_NAME, SUBJECT_CODE, SUBJECT_NAME, MONEY, RG_CODE, SET_YEAR, REMARK, ORG_ID, ORG_CODE, ORG_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, SYS_TYPE
+        from yonyou.adtf_release_use_detail
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AdtfReleaseUseDetailMap">
+        select
+          ID, BILL_ID, VERSION, TARGET_CODE, TARGET_NAME, SUBJECT_CODE, SUBJECT_NAME, MONEY, RG_CODE, SET_YEAR, REMARK, ORG_ID, ORG_CODE, ORG_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, SYS_TYPE
+        from yonyou.adtf_release_use_detail
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AdtfReleaseUseDetailMap">
+        select
+          ID, BILL_ID, VERSION, TARGET_CODE, TARGET_NAME, SUBJECT_CODE, SUBJECT_NAME, MONEY, RG_CODE, SET_YEAR, REMARK, ORG_ID, ORG_CODE, ORG_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, SYS_TYPE
+        from yonyou.adtf_release_use_detail
+        <where>
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="billId != null">
+                and BILL_ID = #{billId}
+            </if>
+            <if test="version != null">
+                and VERSION = #{version}
+            </if>
+            <if test="targetCode != null and targetCode != ''">
+                and TARGET_CODE = #{targetCode}
+            </if>
+            <if test="targetName != null and targetName != ''">
+                and TARGET_NAME = #{targetName}
+            </if>
+            <if test="subjectCode != null and subjectCode != ''">
+                and SUBJECT_CODE = #{subjectCode}
+            </if>
+            <if test="subjectName != null and subjectName != ''">
+                and SUBJECT_NAME = #{subjectName}
+            </if>
+            <if test="money != null">
+                and MONEY = #{money}
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                and RG_CODE = #{rgCode}
+            </if>
+            <if test="setYear != null">
+                and SET_YEAR = #{setYear}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+            <if test="orgId != null and orgId != ''">
+                and ORG_ID = #{orgId}
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                and ORG_CODE = #{orgCode}
+            </if>
+            <if test="orgName != null and orgName != ''">
+                and ORG_NAME = #{orgName}
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="creator != null and creator != ''">
+                and CREATOR = #{creator}
+            </if>
+            <if test="creationtime != null">
+                and CREATIONTIME = #{creationtime}
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                and MODIFIER_ID = #{modifierId}
+            </if>
+            <if test="modifier != null and modifier != ''">
+                and MODIFIER = #{modifier}
+            </if>
+            <if test="modifiedtime != null">
+                and MODIFIEDTIME = #{modifiedtime}
+            </if>
+            <if test="sysType != null and sysType != ''">
+                and SYS_TYPE = #{sysType}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into yonyou.adtf_release_use_detail(BILL_ID, VERSION, TARGET_CODE, TARGET_NAME, SUBJECT_CODE, SUBJECT_NAME, MONEY, RG_CODE, SET_YEAR, REMARK, ORG_ID, ORG_CODE, ORG_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, SYS_TYPE)
+        values (#{billId}, #{version}, #{targetCode}, #{targetName}, #{subjectCode}, #{subjectName}, #{money}, #{rgCode}, #{setYear}, #{remark}, #{orgId}, #{orgCode}, #{orgName}, #{creatorId}, #{creator}, #{creationtime}, #{modifierId}, #{modifier}, #{modifiedtime}, #{sysType})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.adtf_release_use_detail
+        <set>
+            <if test="billId != null">
+                BILL_ID = #{billId},
+            </if>
+            <if test="version != null">
+                VERSION = #{version},
+            </if>
+            <if test="targetCode != null and targetCode != ''">
+                TARGET_CODE = #{targetCode},
+            </if>
+            <if test="targetName != null and targetName != ''">
+                TARGET_NAME = #{targetName},
+            </if>
+            <if test="subjectCode != null and subjectCode != ''">
+                SUBJECT_CODE = #{subjectCode},
+            </if>
+            <if test="subjectName != null and subjectName != ''">
+                SUBJECT_NAME = #{subjectName},
+            </if>
+            <if test="money != null">
+                MONEY = #{money},
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                RG_CODE = #{rgCode},
+            </if>
+            <if test="setYear != null">
+                SET_YEAR = #{setYear},
+            </if>
+            <if test="remark != null and remark != ''">
+                REMARK = #{remark},
+            </if>
+            <if test="orgId != null and orgId != ''">
+                ORG_ID = #{orgId},
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                ORG_CODE = #{orgCode},
+            </if>
+            <if test="orgName != null and orgName != ''">
+                ORG_NAME = #{orgName},
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                CREATOR_ID = #{creatorId},
+            </if>
+            <if test="creator != null and creator != ''">
+                CREATOR = #{creator},
+            </if>
+            <if test="creationtime != null">
+                CREATIONTIME = #{creationtime},
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                MODIFIER_ID = #{modifierId},
+            </if>
+            <if test="modifier != null and modifier != ''">
+                MODIFIER = #{modifier},
+            </if>
+            <if test="modifiedtime != null">
+                MODIFIEDTIME = #{modifiedtime},
+            </if>
+            <if test="sysType != null and sysType != ''">
+                SYS_TYPE = #{sysType},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.adtf_release_use_detail where ID = #{id}
+    </delete>
+
+</mapper>

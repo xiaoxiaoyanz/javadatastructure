@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wucc.yonyou.dao.CassfmApplyBillDao">
+
+    <resultMap type="com.wucc.yonyou.entity.CassfmApplyBill" id="CassfmApplyBillMap">
+        <result property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="version" column="VERSION" jdbcType="NUMERIC"/>
+        <result property="code" column="CODE" jdbcType="VARCHAR"/>
+        <result property="applyorId" column="APPLYOR_ID" jdbcType="VARCHAR"/>
+        <result property="applyorCode" column="APPLYOR_CODE" jdbcType="VARCHAR"/>
+        <result property="applyorName" column="APPLYOR_NAME" jdbcType="VARCHAR"/>
+        <result property="applyDeptId" column="APPLY_DEPT_ID" jdbcType="VARCHAR"/>
+        <result property="applyDeptCode" column="APPLY_DEPT_CODE" jdbcType="VARCHAR"/>
+        <result property="applyDeptName" column="APPLY_DEPT_NAME" jdbcType="VARCHAR"/>
+        <result property="applytime" column="APPLYTIME" jdbcType="VARCHAR"/>
+        <result property="auditorId" column="AUDITOR_ID" jdbcType="VARCHAR"/>
+        <result property="auditorCode" column="AUDITOR_CODE" jdbcType="VARCHAR"/>
+        <result property="auditorName" column="AUDITOR_NAME" jdbcType="VARCHAR"/>
+        <result property="auditname" column="AUDITNAME" jdbcType="VARCHAR"/>
+        <result property="auditStatus" column="AUDIT_STATUS" jdbcType="VARCHAR"/>
+        <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+        <result property="creatorId" column="CREATOR_ID" jdbcType="VARCHAR"/>
+        <result property="creatorCode" column="CREATOR_CODE" jdbcType="VARCHAR"/>
+        <result property="creatorName" column="CREATOR_NAME" jdbcType="VARCHAR"/>
+        <result property="creationtime" column="CREATIONTIME" jdbcType="VARCHAR"/>
+        <result property="modifierId" column="MODIFIER_ID" jdbcType="VARCHAR"/>
+        <result property="modifierCode" column="MODIFIER_CODE" jdbcType="VARCHAR"/>
+        <result property="modifierName" column="MODIFIER_NAME" jdbcType="VARCHAR"/>
+        <result property="modifiedtime" column="MODIFIEDTIME" jdbcType="VARCHAR"/>
+        <result property="applyTotalAmount" column="APPLY_TOTAL_AMOUNT" jdbcType="NUMERIC"/>
+        <result property="checkTypeCode" column="CHECK_TYPE_CODE" jdbcType="VARCHAR"/>
+        <result property="checkTypeName" column="CHECK_TYPE_NAME" jdbcType="VARCHAR"/>
+        <result property="isGovProcure" column="IS_GOV_PROCURE" jdbcType="VARCHAR"/>
+        <result property="applyAcccording" column="APPLY_ACCCORDING" jdbcType="VARCHAR"/>
+        <result property="applyReason" column="APPLY_REASON" jdbcType="VARCHAR"/>
+        <result property="applyType" column="APPLY_TYPE" jdbcType="VARCHAR"/>
+        <result property="operation" column="OPERATION" jdbcType="VARCHAR"/>
+        <result property="orgId" column="ORG_ID" jdbcType="VARCHAR"/>
+        <result property="orgCode" column="ORG_CODE" jdbcType="VARCHAR"/>
+        <result property="orgName" column="ORG_NAME" jdbcType="VARCHAR"/>
+        <result property="rgCode" column="RG_CODE" jdbcType="VARCHAR"/>
+        <result property="setYear" column="SET_YEAR" jdbcType="VARCHAR"/>
+        <result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+        <result property="payAccountPCode" column="PAY_ACCOUNT_P_CODE" jdbcType="VARCHAR"/>
+        <result property="payAccountPName" column="PAY_ACCOUNT_P_NAME" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CassfmApplyBillMap">
+        select
+          ID, VERSION, CODE, APPLYOR_ID, APPLYOR_CODE, APPLYOR_NAME, APPLY_DEPT_ID, APPLY_DEPT_CODE, APPLY_DEPT_NAME, APPLYTIME, AUDITOR_ID, AUDITOR_CODE, AUDITOR_NAME, AUDITNAME, AUDIT_STATUS, STATUS, CREATOR_ID, CREATOR_CODE, CREATOR_NAME, CREATIONTIME, MODIFIER_ID, MODIFIER_CODE, MODIFIER_NAME, MODIFIEDTIME, APPLY_TOTAL_AMOUNT, CHECK_TYPE_CODE, CHECK_TYPE_NAME, IS_GOV_PROCURE, APPLY_ACCCORDING, APPLY_REASON, APPLY_TYPE, OPERATION, ORG_ID, ORG_CODE, ORG_NAME, RG_CODE, SET_YEAR, REMARK, PAY_ACCOUNT_P_CODE, PAY_ACCOUNT_P_NAME
+        from yonyou.cassfm_apply_bill
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CassfmApplyBillMap">
+        select
+          ID, VERSION, CODE, APPLYOR_ID, APPLYOR_CODE, APPLYOR_NAME, APPLY_DEPT_ID, APPLY_DEPT_CODE, APPLY_DEPT_NAME, APPLYTIME, AUDITOR_ID, AUDITOR_CODE, AUDITOR_NAME, AUDITNAME, AUDIT_STATUS, STATUS, CREATOR_ID, CREATOR_CODE, CREATOR_NAME, CREATIONTIME, MODIFIER_ID, MODIFIER_CODE, MODIFIER_NAME, MODIFIEDTIME, APPLY_TOTAL_AMOUNT, CHECK_TYPE_CODE, CHECK_TYPE_NAME, IS_GOV_PROCURE, APPLY_ACCCORDING, APPLY_REASON, APPLY_TYPE, OPERATION, ORG_ID, ORG_CODE, ORG_NAME, RG_CODE, SET_YEAR, REMARK, PAY_ACCOUNT_P_CODE, PAY_ACCOUNT_P_NAME
+        from yonyou.cassfm_apply_bill
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="CassfmApplyBillMap">
+        select
+          ID, VERSION, CODE, APPLYOR_ID, APPLYOR_CODE, APPLYOR_NAME, APPLY_DEPT_ID, APPLY_DEPT_CODE, APPLY_DEPT_NAME, APPLYTIME, AUDITOR_ID, AUDITOR_CODE, AUDITOR_NAME, AUDITNAME, AUDIT_STATUS, STATUS, CREATOR_ID, CREATOR_CODE, CREATOR_NAME, CREATIONTIME, MODIFIER_ID, MODIFIER_CODE, MODIFIER_NAME, MODIFIEDTIME, APPLY_TOTAL_AMOUNT, CHECK_TYPE_CODE, CHECK_TYPE_NAME, IS_GOV_PROCURE, APPLY_ACCCORDING, APPLY_REASON, APPLY_TYPE, OPERATION, ORG_ID, ORG_CODE, ORG_NAME, RG_CODE, SET_YEAR, REMARK, PAY_ACCOUNT_P_CODE, PAY_ACCOUNT_P_NAME
+        from yonyou.cassfm_apply_bill
+        <where>
+            <if test="id != null and id != ''">
+                and ID = #{id}
+            </if>
+            <if test="version != null">
+                and VERSION = #{version}
+            </if>
+            <if test="code != null and code != ''">
+                and CODE = #{code}
+            </if>
+            <if test="applyorId != null and applyorId != ''">
+                and APPLYOR_ID = #{applyorId}
+            </if>
+            <if test="applyorCode != null and applyorCode != ''">
+                and APPLYOR_CODE = #{applyorCode}
+            </if>
+            <if test="applyorName != null and applyorName != ''">
+                and APPLYOR_NAME = #{applyorName}
+            </if>
+            <if test="applyDeptId != null and applyDeptId != ''">
+                and APPLY_DEPT_ID = #{applyDeptId}
+            </if>
+            <if test="applyDeptCode != null and applyDeptCode != ''">
+                and APPLY_DEPT_CODE = #{applyDeptCode}
+            </if>
+            <if test="applyDeptName != null and applyDeptName != ''">
+                and APPLY_DEPT_NAME = #{applyDeptName}
+            </if>
+            <if test="applytime != null and applytime != ''">
+                and APPLYTIME = #{applytime}
+            </if>
+            <if test="auditorId != null and auditorId != ''">
+                and AUDITOR_ID = #{auditorId}
+            </if>
+            <if test="auditorCode != null and auditorCode != ''">
+                and AUDITOR_CODE = #{auditorCode}
+            </if>
+            <if test="auditorName != null and auditorName != ''">
+                and AUDITOR_NAME = #{auditorName}
+            </if>
+            <if test="auditname != null and auditname != ''">
+                and AUDITNAME = #{auditname}
+            </if>
+            <if test="auditStatus != null and auditStatus != ''">
+                and AUDIT_STATUS = #{auditStatus}
+            </if>
+            <if test="status != null and status != ''">
+                and STATUS = #{status}
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="creatorCode != null and creatorCode != ''">
+                and CREATOR_CODE = #{creatorCode}
+            </if>
+            <if test="creatorName != null and creatorName != ''">
+                and CREATOR_NAME = #{creatorName}
+            </if>
+            <if test="creationtime != null and creationtime != ''">
+                and CREATIONTIME = #{creationtime}
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                and MODIFIER_ID = #{modifierId}
+            </if>
+            <if test="modifierCode != null and modifierCode != ''">
+                and MODIFIER_CODE = #{modifierCode}
+            </if>
+            <if test="modifierName != null and modifierName != ''">
+                and MODIFIER_NAME = #{modifierName}
+            </if>
+            <if test="modifiedtime != null and modifiedtime != ''">
+                and MODIFIEDTIME = #{modifiedtime}
+            </if>
+            <if test="applyTotalAmount != null">
+                and APPLY_TOTAL_AMOUNT = #{applyTotalAmount}
+            </if>
+            <if test="checkTypeCode != null and checkTypeCode != ''">
+                and CHECK_TYPE_CODE = #{checkTypeCode}
+            </if>
+            <if test="checkTypeName != null and checkTypeName != ''">
+                and CHECK_TYPE_NAME = #{checkTypeName}
+            </if>
+            <if test="isGovProcure != null and isGovProcure != ''">
+                and IS_GOV_PROCURE = #{isGovProcure}
+            </if>
+            <if test="applyAcccording != null and applyAcccording != ''">
+                and APPLY_ACCCORDING = #{applyAcccording}
+            </if>
+            <if test="applyReason != null and applyReason != ''">
+                and APPLY_REASON = #{applyReason}
+            </if>
+            <if test="applyType != null and applyType != ''">
+                and APPLY_TYPE = #{applyType}
+            </if>
+            <if test="operation != null and operation != ''">
+                and OPERATION = #{operation}
+            </if>
+            <if test="orgId != null and orgId != ''">
+                and ORG_ID = #{orgId}
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                and ORG_CODE = #{orgCode}
+            </if>
+            <if test="orgName != null and orgName != ''">
+                and ORG_NAME = #{orgName}
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                and RG_CODE = #{rgCode}
+            </if>
+            <if test="setYear != null and setYear != ''">
+                and SET_YEAR = #{setYear}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+            <if test="payAccountPCode != null and payAccountPCode != ''">
+                and PAY_ACCOUNT_P_CODE = #{payAccountPCode}
+            </if>
+            <if test="payAccountPName != null and payAccountPName != ''">
+                and PAY_ACCOUNT_P_NAME = #{payAccountPName}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into yonyou.cassfm_apply_bill(VERSION, CODE, APPLYOR_ID, APPLYOR_CODE, APPLYOR_NAME, APPLY_DEPT_ID, APPLY_DEPT_CODE, APPLY_DEPT_NAME, APPLYTIME, AUDITOR_ID, AUDITOR_CODE, AUDITOR_NAME, AUDITNAME, AUDIT_STATUS, STATUS, CREATOR_ID, CREATOR_CODE, CREATOR_NAME, CREATIONTIME, MODIFIER_ID, MODIFIER_CODE, MODIFIER_NAME, MODIFIEDTIME, APPLY_TOTAL_AMOUNT, CHECK_TYPE_CODE, CHECK_TYPE_NAME, IS_GOV_PROCURE, APPLY_ACCCORDING, APPLY_REASON, APPLY_TYPE, OPERATION, ORG_ID, ORG_CODE, ORG_NAME, RG_CODE, SET_YEAR, REMARK, PAY_ACCOUNT_P_CODE, PAY_ACCOUNT_P_NAME)
+        values (#{version}, #{code}, #{applyorId}, #{applyorCode}, #{applyorName}, #{applyDeptId}, #{applyDeptCode}, #{applyDeptName}, #{applytime}, #{auditorId}, #{auditorCode}, #{auditorName}, #{auditname}, #{auditStatus}, #{status}, #{creatorId}, #{creatorCode}, #{creatorName}, #{creationtime}, #{modifierId}, #{modifierCode}, #{modifierName}, #{modifiedtime}, #{applyTotalAmount}, #{checkTypeCode}, #{checkTypeName}, #{isGovProcure}, #{applyAcccording}, #{applyReason}, #{applyType}, #{operation}, #{orgId}, #{orgCode}, #{orgName}, #{rgCode}, #{setYear}, #{remark}, #{payAccountPCode}, #{payAccountPName})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.cassfm_apply_bill
+        <set>
+            <if test="version != null">
+                VERSION = #{version},
+            </if>
+            <if test="code != null and code != ''">
+                CODE = #{code},
+            </if>
+            <if test="applyorId != null and applyorId != ''">
+                APPLYOR_ID = #{applyorId},
+            </if>
+            <if test="applyorCode != null and applyorCode != ''">
+                APPLYOR_CODE = #{applyorCode},
+            </if>
+            <if test="applyorName != null and applyorName != ''">
+                APPLYOR_NAME = #{applyorName},
+            </if>
+            <if test="applyDeptId != null and applyDeptId != ''">
+                APPLY_DEPT_ID = #{applyDeptId},
+            </if>
+            <if test="applyDeptCode != null and applyDeptCode != ''">
+                APPLY_DEPT_CODE = #{applyDeptCode},
+            </if>
+            <if test="applyDeptName != null and applyDeptName != ''">
+                APPLY_DEPT_NAME = #{applyDeptName},
+            </if>
+            <if test="applytime != null and applytime != ''">
+                APPLYTIME = #{applytime},
+            </if>
+            <if test="auditorId != null and auditorId != ''">
+                AUDITOR_ID = #{auditorId},
+            </if>
+            <if test="auditorCode != null and auditorCode != ''">
+                AUDITOR_CODE = #{auditorCode},
+            </if>
+            <if test="auditorName != null and auditorName != ''">
+                AUDITOR_NAME = #{auditorName},
+            </if>
+            <if test="auditname != null and auditname != ''">
+                AUDITNAME = #{auditname},
+            </if>
+            <if test="auditStatus != null and auditStatus != ''">
+                AUDIT_STATUS = #{auditStatus},
+            </if>
+            <if test="status != null and status != ''">
+                STATUS = #{status},
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                CREATOR_ID = #{creatorId},
+            </if>
+            <if test="creatorCode != null and creatorCode != ''">
+                CREATOR_CODE = #{creatorCode},
+            </if>
+            <if test="creatorName != null and creatorName != ''">
+                CREATOR_NAME = #{creatorName},
+            </if>
+            <if test="creationtime != null and creationtime != ''">
+                CREATIONTIME = #{creationtime},
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                MODIFIER_ID = #{modifierId},
+            </if>
+            <if test="modifierCode != null and modifierCode != ''">
+                MODIFIER_CODE = #{modifierCode},
+            </if>
+            <if test="modifierName != null and modifierName != ''">
+                MODIFIER_NAME = #{modifierName},
+            </if>
+            <if test="modifiedtime != null and modifiedtime != ''">
+                MODIFIEDTIME = #{modifiedtime},
+            </if>
+            <if test="applyTotalAmount != null">
+                APPLY_TOTAL_AMOUNT = #{applyTotalAmount},
+            </if>
+            <if test="checkTypeCode != null and checkTypeCode != ''">
+                CHECK_TYPE_CODE = #{checkTypeCode},
+            </if>
+            <if test="checkTypeName != null and checkTypeName != ''">
+                CHECK_TYPE_NAME = #{checkTypeName},
+            </if>
+            <if test="isGovProcure != null and isGovProcure != ''">
+                IS_GOV_PROCURE = #{isGovProcure},
+            </if>
+            <if test="applyAcccording != null and applyAcccording != ''">
+                APPLY_ACCCORDING = #{applyAcccording},
+            </if>
+            <if test="applyReason != null and applyReason != ''">
+                APPLY_REASON = #{applyReason},
+            </if>
+            <if test="applyType != null and applyType != ''">
+                APPLY_TYPE = #{applyType},
+            </if>
+            <if test="operation != null and operation != ''">
+                OPERATION = #{operation},
+            </if>
+            <if test="orgId != null and orgId != ''">
+                ORG_ID = #{orgId},
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                ORG_CODE = #{orgCode},
+            </if>
+            <if test="orgName != null and orgName != ''">
+                ORG_NAME = #{orgName},
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                RG_CODE = #{rgCode},
+            </if>
+            <if test="setYear != null and setYear != ''">
+                SET_YEAR = #{setYear},
+            </if>
+            <if test="remark != null and remark != ''">
+                REMARK = #{remark},
+            </if>
+            <if test="payAccountPCode != null and payAccountPCode != ''">
+                PAY_ACCOUNT_P_CODE = #{payAccountPCode},
+            </if>
+            <if test="payAccountPName != null and payAccountPName != ''">
+                PAY_ACCOUNT_P_NAME = #{payAccountPName},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.cassfm_apply_bill where ID = #{id}
+    </delete>
+
+</mapper>

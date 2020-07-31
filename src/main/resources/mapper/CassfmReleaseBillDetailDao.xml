@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wucc.yonyou.dao.CassfmReleaseBillDetailDao">
+
+    <resultMap type="com.wucc.yonyou.entity.CassfmReleaseBillDetail" id="CassfmReleaseBillDetailMap">
+        <result property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="version" column="version" jdbcType="NUMERIC"/>
+        <result property="billCode" column="BILL_CODE" jdbcType="VARCHAR"/>
+        <result property="billId" column="BILL_ID" jdbcType="VARCHAR"/>
+        <result property="orgId" column="ORG_ID" jdbcType="VARCHAR"/>
+        <result property="orgCode" column="ORG_CODE" jdbcType="VARCHAR"/>
+        <result property="orgName" column="ORG_NAME" jdbcType="VARCHAR"/>
+        <result property="deptId" column="DEPT_ID" jdbcType="VARCHAR"/>
+        <result property="deptCode" column="DEPT_CODE" jdbcType="VARCHAR"/>
+        <result property="deptName" column="DEPT_NAME" jdbcType="VARCHAR"/>
+        <result property="creatorId" column="CREATOR_ID" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="creationtime" column="CREATIONTIME" jdbcType="VARCHAR"/>
+        <result property="modifierId" column="MODIFIER_ID" jdbcType="VARCHAR"/>
+        <result property="modifier" column="MODIFIER" jdbcType="VARCHAR"/>
+        <result property="modifiedtime" column="MODIFIEDTIME" jdbcType="VARCHAR"/>
+        <result property="rgCode" column="RG_CODE" jdbcType="VARCHAR"/>
+        <result property="setYear" column="SET_YEAR" jdbcType="NUMERIC"/>
+        <result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+        <result property="amountSourceCode" column="AMOUNT_SOURCE_CODE" jdbcType="VARCHAR"/>
+        <result property="amountSourceName" column="AMOUNT_SOURCE_NAME" jdbcType="VARCHAR"/>
+        <result property="projectCode" column="PROJECT_CODE" jdbcType="VARCHAR"/>
+        <result property="projectName" column="PROJECT_NAME" jdbcType="VARCHAR"/>
+        <result property="acceptOrgId" column="ACCEPT_ORG_ID" jdbcType="VARCHAR"/>
+        <result property="acceptOrgCode" column="ACCEPT_ORG_CODE" jdbcType="VARCHAR"/>
+        <result property="acceptOrgName" column="ACCEPT_ORG_NAME" jdbcType="VARCHAR"/>
+        <result property="acceptDeptId" column="ACCEPT_DEPT_ID" jdbcType="VARCHAR"/>
+        <result property="acceptDeptCode" column="ACCEPT_DEPT_CODE" jdbcType="VARCHAR"/>
+        <result property="acceptDeptName" column="ACCEPT_DEPT_NAME" jdbcType="VARCHAR"/>
+        <result property="usedOrgId" column="USED_ORG_ID" jdbcType="VARCHAR"/>
+        <result property="usedOrgCode" column="USED_ORG_CODE" jdbcType="VARCHAR"/>
+        <result property="usedOrgName" column="USED_ORG_NAME" jdbcType="VARCHAR"/>
+        <result property="checkAmount" column="CHECK_AMOUNT" jdbcType="NUMERIC"/>
+        <result property="isSign" column="IS_SIGN" jdbcType="VARCHAR"/>
+        <result property="signor" column="SIGNOR" jdbcType="VARCHAR"/>
+        <result property="signorId" column="SIGNOR_ID" jdbcType="VARCHAR"/>
+        <result property="signorCode" column="SIGNOR_CODE" jdbcType="VARCHAR"/>
+        <result property="signDate" column="SIGN_DATE" jdbcType="VARCHAR"/>
+        <result property="releaseAmountP" column="RELEASE_AMOUNT_P" jdbcType="NUMERIC"/>
+        <result property="releaseAmountS" column="RELEASE_AMOUNT_S" jdbcType="NUMERIC"/>
+        <result property="remainAmount" column="REMAIN_AMOUNT" jdbcType="NUMERIC"/>
+        <result property="totalMoney" column="TOTAL_MONEY" jdbcType="NUMERIC"/>
+        <result property="docNoCode" column="DOC_NO_CODE" jdbcType="VARCHAR"/>
+        <result property="docNoName" column="DOC_NO_NAME" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CassfmReleaseBillDetailMap">
+        select
+          ID, version, BILL_CODE, BILL_ID, ORG_ID, ORG_CODE, ORG_NAME, DEPT_ID, DEPT_CODE, DEPT_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, REMARK, AMOUNT_SOURCE_CODE, AMOUNT_SOURCE_NAME, PROJECT_CODE, PROJECT_NAME, ACCEPT_ORG_ID, ACCEPT_ORG_CODE, ACCEPT_ORG_NAME, ACCEPT_DEPT_ID, ACCEPT_DEPT_CODE, ACCEPT_DEPT_NAME, USED_ORG_ID, USED_ORG_CODE, USED_ORG_NAME, CHECK_AMOUNT, IS_SIGN, SIGNOR, SIGNOR_ID, SIGNOR_CODE, SIGN_DATE, RELEASE_AMOUNT_P, RELEASE_AMOUNT_S, REMAIN_AMOUNT, TOTAL_MONEY, DOC_NO_CODE, DOC_NO_NAME
+        from yonyou.cassfm_release_bill_detail
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CassfmReleaseBillDetailMap">
+        select
+          ID, version, BILL_CODE, BILL_ID, ORG_ID, ORG_CODE, ORG_NAME, DEPT_ID, DEPT_CODE, DEPT_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, REMARK, AMOUNT_SOURCE_CODE, AMOUNT_SOURCE_NAME, PROJECT_CODE, PROJECT_NAME, ACCEPT_ORG_ID, ACCEPT_ORG_CODE, ACCEPT_ORG_NAME, ACCEPT_DEPT_ID, ACCEPT_DEPT_CODE, ACCEPT_DEPT_NAME, USED_ORG_ID, USED_ORG_CODE, USED_ORG_NAME, CHECK_AMOUNT, IS_SIGN, SIGNOR, SIGNOR_ID, SIGNOR_CODE, SIGN_DATE, RELEASE_AMOUNT_P, RELEASE_AMOUNT_S, REMAIN_AMOUNT, TOTAL_MONEY, DOC_NO_CODE, DOC_NO_NAME
+        from yonyou.cassfm_release_bill_detail
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="CassfmReleaseBillDetailMap">
+        select
+          ID, version, BILL_CODE, BILL_ID, ORG_ID, ORG_CODE, ORG_NAME, DEPT_ID, DEPT_CODE, DEPT_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, REMARK, AMOUNT_SOURCE_CODE, AMOUNT_SOURCE_NAME, PROJECT_CODE, PROJECT_NAME, ACCEPT_ORG_ID, ACCEPT_ORG_CODE, ACCEPT_ORG_NAME, ACCEPT_DEPT_ID, ACCEPT_DEPT_CODE, ACCEPT_DEPT_NAME, USED_ORG_ID, USED_ORG_CODE, USED_ORG_NAME, CHECK_AMOUNT, IS_SIGN, SIGNOR, SIGNOR_ID, SIGNOR_CODE, SIGN_DATE, RELEASE_AMOUNT_P, RELEASE_AMOUNT_S, REMAIN_AMOUNT, TOTAL_MONEY, DOC_NO_CODE, DOC_NO_NAME
+        from yonyou.cassfm_release_bill_detail
+        <where>
+            <if test="id != null and id != ''">
+                and ID = #{id}
+            </if>
+            <if test="version != null">
+                and version = #{version}
+            </if>
+            <if test="billCode != null and billCode != ''">
+                and BILL_CODE = #{billCode}
+            </if>
+            <if test="billId != null and billId != ''">
+                and BILL_ID = #{billId}
+            </if>
+            <if test="orgId != null and orgId != ''">
+                and ORG_ID = #{orgId}
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                and ORG_CODE = #{orgCode}
+            </if>
+            <if test="orgName != null and orgName != ''">
+                and ORG_NAME = #{orgName}
+            </if>
+            <if test="deptId != null and deptId != ''">
+                and DEPT_ID = #{deptId}
+            </if>
+            <if test="deptCode != null and deptCode != ''">
+                and DEPT_CODE = #{deptCode}
+            </if>
+            <if test="deptName != null and deptName != ''">
+                and DEPT_NAME = #{deptName}
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="creator != null and creator != ''">
+                and CREATOR = #{creator}
+            </if>
+            <if test="creationtime != null and creationtime != ''">
+                and CREATIONTIME = #{creationtime}
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                and MODIFIER_ID = #{modifierId}
+            </if>
+            <if test="modifier != null and modifier != ''">
+                and MODIFIER = #{modifier}
+            </if>
+            <if test="modifiedtime != null and modifiedtime != ''">
+                and MODIFIEDTIME = #{modifiedtime}
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                and RG_CODE = #{rgCode}
+            </if>
+            <if test="setYear != null">
+                and SET_YEAR = #{setYear}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+            <if test="amountSourceCode != null and amountSourceCode != ''">
+                and AMOUNT_SOURCE_CODE = #{amountSourceCode}
+            </if>
+            <if test="amountSourceName != null and amountSourceName != ''">
+                and AMOUNT_SOURCE_NAME = #{amountSourceName}
+            </if>
+            <if test="projectCode != null and projectCode != ''">
+                and PROJECT_CODE = #{projectCode}
+            </if>
+            <if test="projectName != null and projectName != ''">
+                and PROJECT_NAME = #{projectName}
+            </if>
+            <if test="acceptOrgId != null and acceptOrgId != ''">
+                and ACCEPT_ORG_ID = #{acceptOrgId}
+            </if>
+            <if test="acceptOrgCode != null and acceptOrgCode != ''">
+                and ACCEPT_ORG_CODE = #{acceptOrgCode}
+            </if>
+            <if test="acceptOrgName != null and acceptOrgName != ''">
+                and ACCEPT_ORG_NAME = #{acceptOrgName}
+            </if>
+            <if test="acceptDeptId != null and acceptDeptId != ''">
+                and ACCEPT_DEPT_ID = #{acceptDeptId}
+            </if>
+            <if test="acceptDeptCode != null and acceptDeptCode != ''">
+                and ACCEPT_DEPT_CODE = #{acceptDeptCode}
+            </if>
+            <if test="acceptDeptName != null and acceptDeptName != ''">
+                and ACCEPT_DEPT_NAME = #{acceptDeptName}
+            </if>
+            <if test="usedOrgId != null and usedOrgId != ''">
+                and USED_ORG_ID = #{usedOrgId}
+            </if>
+            <if test="usedOrgCode != null and usedOrgCode != ''">
+                and USED_ORG_CODE = #{usedOrgCode}
+            </if>
+            <if test="usedOrgName != null and usedOrgName != ''">
+                and USED_ORG_NAME = #{usedOrgName}
+            </if>
+            <if test="checkAmount != null">
+                and CHECK_AMOUNT = #{checkAmount}
+            </if>
+            <if test="isSign != null and isSign != ''">
+                and IS_SIGN = #{isSign}
+            </if>
+            <if test="signor != null and signor != ''">
+                and SIGNOR = #{signor}
+            </if>
+            <if test="signorId != null and signorId != ''">
+                and SIGNOR_ID = #{signorId}
+            </if>
+            <if test="signorCode != null and signorCode != ''">
+                and SIGNOR_CODE = #{signorCode}
+            </if>
+            <if test="signDate != null and signDate != ''">
+                and SIGN_DATE = #{signDate}
+            </if>
+            <if test="releaseAmountP != null">
+                and RELEASE_AMOUNT_P = #{releaseAmountP}
+            </if>
+            <if test="releaseAmountS != null">
+                and RELEASE_AMOUNT_S = #{releaseAmountS}
+            </if>
+            <if test="remainAmount != null">
+                and REMAIN_AMOUNT = #{remainAmount}
+            </if>
+            <if test="totalMoney != null">
+                and TOTAL_MONEY = #{totalMoney}
+            </if>
+            <if test="docNoCode != null and docNoCode != ''">
+                and DOC_NO_CODE = #{docNoCode}
+            </if>
+            <if test="docNoName != null and docNoName != ''">
+                and DOC_NO_NAME = #{docNoName}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into yonyou.cassfm_release_bill_detail(version, BILL_CODE, BILL_ID, ORG_ID, ORG_CODE, ORG_NAME, DEPT_ID, DEPT_CODE, DEPT_NAME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, REMARK, AMOUNT_SOURCE_CODE, AMOUNT_SOURCE_NAME, PROJECT_CODE, PROJECT_NAME, ACCEPT_ORG_ID, ACCEPT_ORG_CODE, ACCEPT_ORG_NAME, ACCEPT_DEPT_ID, ACCEPT_DEPT_CODE, ACCEPT_DEPT_NAME, USED_ORG_ID, USED_ORG_CODE, USED_ORG_NAME, CHECK_AMOUNT, IS_SIGN, SIGNOR, SIGNOR_ID, SIGNOR_CODE, SIGN_DATE, RELEASE_AMOUNT_P, RELEASE_AMOUNT_S, REMAIN_AMOUNT, TOTAL_MONEY, DOC_NO_CODE, DOC_NO_NAME)
+        values (#{version}, #{billCode}, #{billId}, #{orgId}, #{orgCode}, #{orgName}, #{deptId}, #{deptCode}, #{deptName}, #{creatorId}, #{creator}, #{creationtime}, #{modifierId}, #{modifier}, #{modifiedtime}, #{rgCode}, #{setYear}, #{remark}, #{amountSourceCode}, #{amountSourceName}, #{projectCode}, #{projectName}, #{acceptOrgId}, #{acceptOrgCode}, #{acceptOrgName}, #{acceptDeptId}, #{acceptDeptCode}, #{acceptDeptName}, #{usedOrgId}, #{usedOrgCode}, #{usedOrgName}, #{checkAmount}, #{isSign}, #{signor}, #{signorId}, #{signorCode}, #{signDate}, #{releaseAmountP}, #{releaseAmountS}, #{remainAmount}, #{totalMoney}, #{docNoCode}, #{docNoName})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.cassfm_release_bill_detail
+        <set>
+            <if test="version != null">
+                version = #{version},
+            </if>
+            <if test="billCode != null and billCode != ''">
+                BILL_CODE = #{billCode},
+            </if>
+            <if test="billId != null and billId != ''">
+                BILL_ID = #{billId},
+            </if>
+            <if test="orgId != null and orgId != ''">
+                ORG_ID = #{orgId},
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                ORG_CODE = #{orgCode},
+            </if>
+            <if test="orgName != null and orgName != ''">
+                ORG_NAME = #{orgName},
+            </if>
+            <if test="deptId != null and deptId != ''">
+                DEPT_ID = #{deptId},
+            </if>
+            <if test="deptCode != null and deptCode != ''">
+                DEPT_CODE = #{deptCode},
+            </if>
+            <if test="deptName != null and deptName != ''">
+                DEPT_NAME = #{deptName},
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                CREATOR_ID = #{creatorId},
+            </if>
+            <if test="creator != null and creator != ''">
+                CREATOR = #{creator},
+            </if>
+            <if test="creationtime != null and creationtime != ''">
+                CREATIONTIME = #{creationtime},
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                MODIFIER_ID = #{modifierId},
+            </if>
+            <if test="modifier != null and modifier != ''">
+                MODIFIER = #{modifier},
+            </if>
+            <if test="modifiedtime != null and modifiedtime != ''">
+                MODIFIEDTIME = #{modifiedtime},
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                RG_CODE = #{rgCode},
+            </if>
+            <if test="setYear != null">
+                SET_YEAR = #{setYear},
+            </if>
+            <if test="remark != null and remark != ''">
+                REMARK = #{remark},
+            </if>
+            <if test="amountSourceCode != null and amountSourceCode != ''">
+                AMOUNT_SOURCE_CODE = #{amountSourceCode},
+            </if>
+            <if test="amountSourceName != null and amountSourceName != ''">
+                AMOUNT_SOURCE_NAME = #{amountSourceName},
+            </if>
+            <if test="projectCode != null and projectCode != ''">
+                PROJECT_CODE = #{projectCode},
+            </if>
+            <if test="projectName != null and projectName != ''">
+                PROJECT_NAME = #{projectName},
+            </if>
+            <if test="acceptOrgId != null and acceptOrgId != ''">
+                ACCEPT_ORG_ID = #{acceptOrgId},
+            </if>
+            <if test="acceptOrgCode != null and acceptOrgCode != ''">
+                ACCEPT_ORG_CODE = #{acceptOrgCode},
+            </if>
+            <if test="acceptOrgName != null and acceptOrgName != ''">
+                ACCEPT_ORG_NAME = #{acceptOrgName},
+            </if>
+            <if test="acceptDeptId != null and acceptDeptId != ''">
+                ACCEPT_DEPT_ID = #{acceptDeptId},
+            </if>
+            <if test="acceptDeptCode != null and acceptDeptCode != ''">
+                ACCEPT_DEPT_CODE = #{acceptDeptCode},
+            </if>
+            <if test="acceptDeptName != null and acceptDeptName != ''">
+                ACCEPT_DEPT_NAME = #{acceptDeptName},
+            </if>
+            <if test="usedOrgId != null and usedOrgId != ''">
+                USED_ORG_ID = #{usedOrgId},
+            </if>
+            <if test="usedOrgCode != null and usedOrgCode != ''">
+                USED_ORG_CODE = #{usedOrgCode},
+            </if>
+            <if test="usedOrgName != null and usedOrgName != ''">
+                USED_ORG_NAME = #{usedOrgName},
+            </if>
+            <if test="checkAmount != null">
+                CHECK_AMOUNT = #{checkAmount},
+            </if>
+            <if test="isSign != null and isSign != ''">
+                IS_SIGN = #{isSign},
+            </if>
+            <if test="signor != null and signor != ''">
+                SIGNOR = #{signor},
+            </if>
+            <if test="signorId != null and signorId != ''">
+                SIGNOR_ID = #{signorId},
+            </if>
+            <if test="signorCode != null and signorCode != ''">
+                SIGNOR_CODE = #{signorCode},
+            </if>
+            <if test="signDate != null and signDate != ''">
+                SIGN_DATE = #{signDate},
+            </if>
+            <if test="releaseAmountP != null">
+                RELEASE_AMOUNT_P = #{releaseAmountP},
+            </if>
+            <if test="releaseAmountS != null">
+                RELEASE_AMOUNT_S = #{releaseAmountS},
+            </if>
+            <if test="remainAmount != null">
+                REMAIN_AMOUNT = #{remainAmount},
+            </if>
+            <if test="totalMoney != null">
+                TOTAL_MONEY = #{totalMoney},
+            </if>
+            <if test="docNoCode != null and docNoCode != ''">
+                DOC_NO_CODE = #{docNoCode},
+            </if>
+            <if test="docNoName != null and docNoName != ''">
+                DOC_NO_NAME = #{docNoName},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.cassfm_release_bill_detail where ID = #{id}
+    </delete>
+
+</mapper>

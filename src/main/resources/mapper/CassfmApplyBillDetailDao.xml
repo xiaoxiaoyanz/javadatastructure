@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wucc.yonyou.dao.CassfmApplyBillDetailDao">
+
+    <resultMap type="com.wucc.yonyou.entity.CassfmApplyBillDetail" id="CassfmApplyBillDetailMap">
+        <result property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="version" column="VERSION" jdbcType="NUMERIC"/>
+        <result property="billId" column="BILL_ID" jdbcType="VARCHAR"/>
+        <result property="projectId" column="PROJECT_ID" jdbcType="VARCHAR"/>
+        <result property="projectDetailId" column="PROJECT_DETAIL_ID" jdbcType="VARCHAR"/>
+        <result property="docNoCode" column="DOC_NO_CODE" jdbcType="VARCHAR"/>
+        <result property="docNoName" column="DOC_NO_NAME" jdbcType="VARCHAR"/>
+        <result property="projectTypeCode" column="PROJECT_TYPE_CODE" jdbcType="VARCHAR"/>
+        <result property="projectTypeName" column="PROJECT_TYPE_NAME" jdbcType="VARCHAR"/>
+        <result property="projectCode" column="PROJECT_CODE" jdbcType="VARCHAR"/>
+        <result property="projectName" column="PROJECT_NAME" jdbcType="VARCHAR"/>
+        <result property="acceptDeptId" column="ACCEPT_DEPT_ID" jdbcType="VARCHAR"/>
+        <result property="acceptDeptCode" column="ACCEPT_DEPT_CODE" jdbcType="VARCHAR"/>
+        <result property="acceptDeptName" column="ACCEPT_DEPT_NAME" jdbcType="VARCHAR"/>
+        <result property="useOrgId" column="USE_ORG_ID" jdbcType="VARCHAR"/>
+        <result property="useOrgCode" column="USE_ORG_CODE" jdbcType="VARCHAR"/>
+        <result property="useOrgName" column="USE_ORG_NAME" jdbcType="VARCHAR"/>
+        <result property="totalAssignAmount" column="TOTAL_ASSIGN_AMOUNT" jdbcType="NUMERIC"/>
+        <result property="applyAmount" column="APPLY_AMOUNT" jdbcType="NUMERIC"/>
+        <result property="applyAmountP" column="APPLY_AMOUNT_P" jdbcType="NUMERIC"/>
+        <result property="applyAmountS" column="APPLY_AMOUNT_S" jdbcType="NUMERIC"/>
+        <result property="remainAmount" column="REMAIN_AMOUNT" jdbcType="NUMERIC"/>
+        <result property="checkedtime" column="CHECKEDTIME" jdbcType="VARCHAR"/>
+        <result property="applyTypeDetail" column="APPLY_TYPE_DETAIL" jdbcType="VARCHAR"/>
+        <result property="orgId" column="ORG_ID" jdbcType="VARCHAR"/>
+        <result property="orgCode" column="ORG_CODE" jdbcType="VARCHAR"/>
+        <result property="orgName" column="ORG_NAME" jdbcType="VARCHAR"/>
+        <result property="rgCode" column="RG_CODE" jdbcType="VARCHAR"/>
+        <result property="setYear" column="SET_YEAR" jdbcType="VARCHAR"/>
+        <result property="payAccountPCode" column="PAY_ACCOUNT_P_CODE" jdbcType="VARCHAR"/>
+        <result property="payAccountPName" column="PAY_ACCOUNT_P_NAME" jdbcType="VARCHAR"/>
+        <result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CassfmApplyBillDetailMap">
+        select
+          ID, VERSION, BILL_ID, PROJECT_ID, PROJECT_DETAIL_ID, DOC_NO_CODE, DOC_NO_NAME, PROJECT_TYPE_CODE, PROJECT_TYPE_NAME, PROJECT_CODE, PROJECT_NAME, ACCEPT_DEPT_ID, ACCEPT_DEPT_CODE, ACCEPT_DEPT_NAME, USE_ORG_ID, USE_ORG_CODE, USE_ORG_NAME, TOTAL_ASSIGN_AMOUNT, APPLY_AMOUNT, APPLY_AMOUNT_P, APPLY_AMOUNT_S, REMAIN_AMOUNT, CHECKEDTIME, APPLY_TYPE_DETAIL, ORG_ID, ORG_CODE, ORG_NAME, RG_CODE, SET_YEAR, PAY_ACCOUNT_P_CODE, PAY_ACCOUNT_P_NAME, REMARK
+        from yonyou.cassfm_apply_bill_detail
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CassfmApplyBillDetailMap">
+        select
+          ID, VERSION, BILL_ID, PROJECT_ID, PROJECT_DETAIL_ID, DOC_NO_CODE, DOC_NO_NAME, PROJECT_TYPE_CODE, PROJECT_TYPE_NAME, PROJECT_CODE, PROJECT_NAME, ACCEPT_DEPT_ID, ACCEPT_DEPT_CODE, ACCEPT_DEPT_NAME, USE_ORG_ID, USE_ORG_CODE, USE_ORG_NAME, TOTAL_ASSIGN_AMOUNT, APPLY_AMOUNT, APPLY_AMOUNT_P, APPLY_AMOUNT_S, REMAIN_AMOUNT, CHECKEDTIME, APPLY_TYPE_DETAIL, ORG_ID, ORG_CODE, ORG_NAME, RG_CODE, SET_YEAR, PAY_ACCOUNT_P_CODE, PAY_ACCOUNT_P_NAME, REMARK
+        from yonyou.cassfm_apply_bill_detail
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="CassfmApplyBillDetailMap">
+        select
+          ID, VERSION, BILL_ID, PROJECT_ID, PROJECT_DETAIL_ID, DOC_NO_CODE, DOC_NO_NAME, PROJECT_TYPE_CODE, PROJECT_TYPE_NAME, PROJECT_CODE, PROJECT_NAME, ACCEPT_DEPT_ID, ACCEPT_DEPT_CODE, ACCEPT_DEPT_NAME, USE_ORG_ID, USE_ORG_CODE, USE_ORG_NAME, TOTAL_ASSIGN_AMOUNT, APPLY_AMOUNT, APPLY_AMOUNT_P, APPLY_AMOUNT_S, REMAIN_AMOUNT, CHECKEDTIME, APPLY_TYPE_DETAIL, ORG_ID, ORG_CODE, ORG_NAME, RG_CODE, SET_YEAR, PAY_ACCOUNT_P_CODE, PAY_ACCOUNT_P_NAME, REMARK
+        from yonyou.cassfm_apply_bill_detail
+        <where>
+            <if test="id != null and id != ''">
+                and ID = #{id}
+            </if>
+            <if test="version != null">
+                and VERSION = #{version}
+            </if>
+            <if test="billId != null and billId != ''">
+                and BILL_ID = #{billId}
+            </if>
+            <if test="projectId != null and projectId != ''">
+                and PROJECT_ID = #{projectId}
+            </if>
+            <if test="projectDetailId != null and projectDetailId != ''">
+                and PROJECT_DETAIL_ID = #{projectDetailId}
+            </if>
+            <if test="docNoCode != null and docNoCode != ''">
+                and DOC_NO_CODE = #{docNoCode}
+            </if>
+            <if test="docNoName != null and docNoName != ''">
+                and DOC_NO_NAME = #{docNoName}
+            </if>
+            <if test="projectTypeCode != null and projectTypeCode != ''">
+                and PROJECT_TYPE_CODE = #{projectTypeCode}
+            </if>
+            <if test="projectTypeName != null and projectTypeName != ''">
+                and PROJECT_TYPE_NAME = #{projectTypeName}
+            </if>
+            <if test="projectCode != null and projectCode != ''">
+                and PROJECT_CODE = #{projectCode}
+            </if>
+            <if test="projectName != null and projectName != ''">
+                and PROJECT_NAME = #{projectName}
+            </if>
+            <if test="acceptDeptId != null and acceptDeptId != ''">
+                and ACCEPT_DEPT_ID = #{acceptDeptId}
+            </if>
+            <if test="acceptDeptCode != null and acceptDeptCode != ''">
+                and ACCEPT_DEPT_CODE = #{acceptDeptCode}
+            </if>
+            <if test="acceptDeptName != null and acceptDeptName != ''">
+                and ACCEPT_DEPT_NAME = #{acceptDeptName}
+            </if>
+            <if test="useOrgId != null and useOrgId != ''">
+                and USE_ORG_ID = #{useOrgId}
+            </if>
+            <if test="useOrgCode != null and useOrgCode != ''">
+                and USE_ORG_CODE = #{useOrgCode}
+            </if>
+            <if test="useOrgName != null and useOrgName != ''">
+                and USE_ORG_NAME = #{useOrgName}
+            </if>
+            <if test="totalAssignAmount != null">
+                and TOTAL_ASSIGN_AMOUNT = #{totalAssignAmount}
+            </if>
+            <if test="applyAmount != null">
+                and APPLY_AMOUNT = #{applyAmount}
+            </if>
+            <if test="applyAmountP != null">
+                and APPLY_AMOUNT_P = #{applyAmountP}
+            </if>
+            <if test="applyAmountS != null">
+                and APPLY_AMOUNT_S = #{applyAmountS}
+            </if>
+            <if test="remainAmount != null">
+                and REMAIN_AMOUNT = #{remainAmount}
+            </if>
+            <if test="checkedtime != null and checkedtime != ''">
+                and CHECKEDTIME = #{checkedtime}
+            </if>
+            <if test="applyTypeDetail != null and applyTypeDetail != ''">
+                and APPLY_TYPE_DETAIL = #{applyTypeDetail}
+            </if>
+            <if test="orgId != null and orgId != ''">
+                and ORG_ID = #{orgId}
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                and ORG_CODE = #{orgCode}
+            </if>
+            <if test="orgName != null and orgName != ''">
+                and ORG_NAME = #{orgName}
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                and RG_CODE = #{rgCode}
+            </if>
+            <if test="setYear != null and setYear != ''">
+                and SET_YEAR = #{setYear}
+            </if>
+            <if test="payAccountPCode != null and payAccountPCode != ''">
+                and PAY_ACCOUNT_P_CODE = #{payAccountPCode}
+            </if>
+            <if test="payAccountPName != null and payAccountPName != ''">
+                and PAY_ACCOUNT_P_NAME = #{payAccountPName}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into yonyou.cassfm_apply_bill_detail(VERSION, BILL_ID, PROJECT_ID, PROJECT_DETAIL_ID, DOC_NO_CODE, DOC_NO_NAME, PROJECT_TYPE_CODE, PROJECT_TYPE_NAME, PROJECT_CODE, PROJECT_NAME, ACCEPT_DEPT_ID, ACCEPT_DEPT_CODE, ACCEPT_DEPT_NAME, USE_ORG_ID, USE_ORG_CODE, USE_ORG_NAME, TOTAL_ASSIGN_AMOUNT, APPLY_AMOUNT, APPLY_AMOUNT_P, APPLY_AMOUNT_S, REMAIN_AMOUNT, CHECKEDTIME, APPLY_TYPE_DETAIL, ORG_ID, ORG_CODE, ORG_NAME, RG_CODE, SET_YEAR, PAY_ACCOUNT_P_CODE, PAY_ACCOUNT_P_NAME, REMARK)
+        values (#{version}, #{billId}, #{projectId}, #{projectDetailId}, #{docNoCode}, #{docNoName}, #{projectTypeCode}, #{projectTypeName}, #{projectCode}, #{projectName}, #{acceptDeptId}, #{acceptDeptCode}, #{acceptDeptName}, #{useOrgId}, #{useOrgCode}, #{useOrgName}, #{totalAssignAmount}, #{applyAmount}, #{applyAmountP}, #{applyAmountS}, #{remainAmount}, #{checkedtime}, #{applyTypeDetail}, #{orgId}, #{orgCode}, #{orgName}, #{rgCode}, #{setYear}, #{payAccountPCode}, #{payAccountPName}, #{remark})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.cassfm_apply_bill_detail
+        <set>
+            <if test="version != null">
+                VERSION = #{version},
+            </if>
+            <if test="billId != null and billId != ''">
+                BILL_ID = #{billId},
+            </if>
+            <if test="projectId != null and projectId != ''">
+                PROJECT_ID = #{projectId},
+            </if>
+            <if test="projectDetailId != null and projectDetailId != ''">
+                PROJECT_DETAIL_ID = #{projectDetailId},
+            </if>
+            <if test="docNoCode != null and docNoCode != ''">
+                DOC_NO_CODE = #{docNoCode},
+            </if>
+            <if test="docNoName != null and docNoName != ''">
+                DOC_NO_NAME = #{docNoName},
+            </if>
+            <if test="projectTypeCode != null and projectTypeCode != ''">
+                PROJECT_TYPE_CODE = #{projectTypeCode},
+            </if>
+            <if test="projectTypeName != null and projectTypeName != ''">
+                PROJECT_TYPE_NAME = #{projectTypeName},
+            </if>
+            <if test="projectCode != null and projectCode != ''">
+                PROJECT_CODE = #{projectCode},
+            </if>
+            <if test="projectName != null and projectName != ''">
+                PROJECT_NAME = #{projectName},
+            </if>
+            <if test="acceptDeptId != null and acceptDeptId != ''">
+                ACCEPT_DEPT_ID = #{acceptDeptId},
+            </if>
+            <if test="acceptDeptCode != null and acceptDeptCode != ''">
+                ACCEPT_DEPT_CODE = #{acceptDeptCode},
+            </if>
+            <if test="acceptDeptName != null and acceptDeptName != ''">
+                ACCEPT_DEPT_NAME = #{acceptDeptName},
+            </if>
+            <if test="useOrgId != null and useOrgId != ''">
+                USE_ORG_ID = #{useOrgId},
+            </if>
+            <if test="useOrgCode != null and useOrgCode != ''">
+                USE_ORG_CODE = #{useOrgCode},
+            </if>
+            <if test="useOrgName != null and useOrgName != ''">
+                USE_ORG_NAME = #{useOrgName},
+            </if>
+            <if test="totalAssignAmount != null">
+                TOTAL_ASSIGN_AMOUNT = #{totalAssignAmount},
+            </if>
+            <if test="applyAmount != null">
+                APPLY_AMOUNT = #{applyAmount},
+            </if>
+            <if test="applyAmountP != null">
+                APPLY_AMOUNT_P = #{applyAmountP},
+            </if>
+            <if test="applyAmountS != null">
+                APPLY_AMOUNT_S = #{applyAmountS},
+            </if>
+            <if test="remainAmount != null">
+                REMAIN_AMOUNT = #{remainAmount},
+            </if>
+            <if test="checkedtime != null and checkedtime != ''">
+                CHECKEDTIME = #{checkedtime},
+            </if>
+            <if test="applyTypeDetail != null and applyTypeDetail != ''">
+                APPLY_TYPE_DETAIL = #{applyTypeDetail},
+            </if>
+            <if test="orgId != null and orgId != ''">
+                ORG_ID = #{orgId},
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                ORG_CODE = #{orgCode},
+            </if>
+            <if test="orgName != null and orgName != ''">
+                ORG_NAME = #{orgName},
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                RG_CODE = #{rgCode},
+            </if>
+            <if test="setYear != null and setYear != ''">
+                SET_YEAR = #{setYear},
+            </if>
+            <if test="payAccountPCode != null and payAccountPCode != ''">
+                PAY_ACCOUNT_P_CODE = #{payAccountPCode},
+            </if>
+            <if test="payAccountPName != null and payAccountPName != ''">
+                PAY_ACCOUNT_P_NAME = #{payAccountPName},
+            </if>
+            <if test="remark != null and remark != ''">
+                REMARK = #{remark},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.cassfm_apply_bill_detail where ID = #{id}
+    </delete>
+
+</mapper>
