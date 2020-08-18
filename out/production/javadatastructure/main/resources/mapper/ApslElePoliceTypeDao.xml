@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wucc.yonyou.dao.ApslElePoliceTypeDao">
+
+    <resultMap type="com.wucc.yonyou.entity.ApslElePoliceType" id="ApslElePoliceTypeMap">
+        <result property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="code" column="CODE" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+        <result property="shortcode" column="SHORTCODE" jdbcType="VARCHAR"/>
+        <result property="shortname" column="SHORTNAME" jdbcType="VARCHAR"/>
+        <result property="wholename" column="WHOLENAME" jdbcType="VARCHAR"/>
+        <result property="description" column="DESCRIPTION" jdbcType="VARCHAR"/>
+        <result property="parentId" column="PARENT_ID" jdbcType="VARCHAR"/>
+        <result property="parentCode" column="PARENT_CODE" jdbcType="VARCHAR"/>
+        <result property="levelNum" column="LEVEL_NUM" jdbcType="INTEGER"/>
+        <result property="isLeaf" column="IS_LEAF" jdbcType="VARCHAR"/>
+        <result property="isFinance" column="IS_FINANCE" jdbcType="VARCHAR"/>
+        <result property="version" column="VERSION" jdbcType="INTEGER"/>
+        <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+        <result property="startdate" column="STARTDATE" jdbcType="OTHER"/>
+        <result property="enddate" column="ENDDATE" jdbcType="OTHER"/>
+        <result property="orgId" column="ORG_ID" jdbcType="VARCHAR"/>
+        <result property="orgCode" column="ORG_CODE" jdbcType="VARCHAR"/>
+        <result property="creatorId" column="CREATOR_ID" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="creationtime" column="CREATIONTIME" jdbcType="TIMESTAMP"/>
+        <result property="modifierId" column="MODIFIER_ID" jdbcType="VARCHAR"/>
+        <result property="modifier" column="MODIFIER" jdbcType="VARCHAR"/>
+        <result property="modifiedtime" column="MODIFIEDTIME" jdbcType="TIMESTAMP"/>
+        <result property="rgCode" column="RG_CODE" jdbcType="VARCHAR"/>
+        <result property="setYear" column="SET_YEAR" jdbcType="INTEGER"/>
+        <result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ApslElePoliceTypeMap">
+        select
+          ID, CODE, NAME, SHORTCODE, SHORTNAME, WHOLENAME, DESCRIPTION, PARENT_ID, PARENT_CODE, LEVEL_NUM, IS_LEAF, IS_FINANCE, VERSION, STATUS, STARTDATE, ENDDATE, ORG_ID, ORG_CODE, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, REMARK
+        from yonyou.apsl_ele_police_type
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ApslElePoliceTypeMap">
+        select
+          ID, CODE, NAME, SHORTCODE, SHORTNAME, WHOLENAME, DESCRIPTION, PARENT_ID, PARENT_CODE, LEVEL_NUM, IS_LEAF, IS_FINANCE, VERSION, STATUS, STARTDATE, ENDDATE, ORG_ID, ORG_CODE, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, REMARK
+        from yonyou.apsl_ele_police_type
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ApslElePoliceTypeMap">
+        select
+        ID, CODE, NAME, SHORTCODE, SHORTNAME, WHOLENAME, DESCRIPTION, PARENT_ID, PARENT_CODE, LEVEL_NUM, IS_LEAF,
+        IS_FINANCE, VERSION, STATUS, STARTDATE, ENDDATE, ORG_ID, ORG_CODE, CREATOR_ID, CREATOR, CREATIONTIME,
+        MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, REMARK
+        from yonyou.apsl_ele_police_type
+        <where>
+            <if test="id != null and id != ''">
+                and ID = #{id}
+            </if>
+            <if test="code != null and code != ''">
+                and CODE = #{code}
+            </if>
+            <if test="name != null and name != ''">
+                and NAME = #{name}
+            </if>
+            <if test="shortcode != null and shortcode != ''">
+                and SHORTCODE = #{shortcode}
+            </if>
+            <if test="shortname != null and shortname != ''">
+                and SHORTNAME = #{shortname}
+            </if>
+            <if test="wholename != null and wholename != ''">
+                and WHOLENAME = #{wholename}
+            </if>
+            <if test="description != null and description != ''">
+                and DESCRIPTION = #{description}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                and PARENT_ID = #{parentId}
+            </if>
+            <if test="parentCode != null and parentCode != ''">
+                and PARENT_CODE = #{parentCode}
+            </if>
+            <if test="levelNum != null">
+                and LEVEL_NUM = #{levelNum}
+            </if>
+            <if test="isLeaf != null and isLeaf != ''">
+                and IS_LEAF = #{isLeaf}
+            </if>
+            <if test="isFinance != null and isFinance != ''">
+                and IS_FINANCE = #{isFinance}
+            </if>
+            <if test="version != null">
+                and VERSION = #{version}
+            </if>
+            <if test="status != null and status != ''">
+                and STATUS = #{status}
+            </if>
+            <if test="startdate != null">
+                and STARTDATE = #{startdate}
+            </if>
+            <if test="enddate != null">
+                and ENDDATE = #{enddate}
+            </if>
+            <if test="orgId != null and orgId != ''">
+                and ORG_ID = #{orgId}
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                and ORG_CODE = #{orgCode}
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="creator != null and creator != ''">
+                and CREATOR = #{creator}
+            </if>
+            <if test="creationtime != null">
+                and CREATIONTIME = #{creationtime}
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                and MODIFIER_ID = #{modifierId}
+            </if>
+            <if test="modifier != null and modifier != ''">
+                and MODIFIER = #{modifier}
+            </if>
+            <if test="modifiedtime != null">
+                and MODIFIEDTIME = #{modifiedtime}
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                and RG_CODE = #{rgCode}
+            </if>
+            <if test="setYear != null">
+                and SET_YEAR = #{setYear}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into yonyou.apsl_ele_police_type(CODE, NAME, SHORTCODE, SHORTNAME, WHOLENAME, DESCRIPTION, PARENT_ID, PARENT_CODE, LEVEL_NUM, IS_LEAF, IS_FINANCE, VERSION, STATUS, STARTDATE, ENDDATE, ORG_ID, ORG_CODE, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, RG_CODE, SET_YEAR, REMARK)
+        values (#{code}, #{name}, #{shortcode}, #{shortname}, #{wholename}, #{description}, #{parentId}, #{parentCode}, #{levelNum}, #{isLeaf}, #{isFinance}, #{version}, #{status}, #{startdate}, #{enddate}, #{orgId}, #{orgCode}, #{creatorId}, #{creator}, #{creationtime}, #{modifierId}, #{modifier}, #{modifiedtime}, #{rgCode}, #{setYear}, #{remark})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.apsl_ele_police_type
+        <set>
+            <if test="code != null and code != ''">
+                CODE = #{code},
+            </if>
+            <if test="name != null and name != ''">
+                NAME = #{name},
+            </if>
+            <if test="shortcode != null and shortcode != ''">
+                SHORTCODE = #{shortcode},
+            </if>
+            <if test="shortname != null and shortname != ''">
+                SHORTNAME = #{shortname},
+            </if>
+            <if test="wholename != null and wholename != ''">
+                WHOLENAME = #{wholename},
+            </if>
+            <if test="description != null and description != ''">
+                DESCRIPTION = #{description},
+            </if>
+            <if test="parentId != null and parentId != ''">
+                PARENT_ID = #{parentId},
+            </if>
+            <if test="parentCode != null and parentCode != ''">
+                PARENT_CODE = #{parentCode},
+            </if>
+            <if test="levelNum != null">
+                LEVEL_NUM = #{levelNum},
+            </if>
+            <if test="isLeaf != null and isLeaf != ''">
+                IS_LEAF = #{isLeaf},
+            </if>
+            <if test="isFinance != null and isFinance != ''">
+                IS_FINANCE = #{isFinance},
+            </if>
+            <if test="version != null">
+                VERSION = #{version},
+            </if>
+            <if test="status != null and status != ''">
+                STATUS = #{status},
+            </if>
+            <if test="startdate != null">
+                STARTDATE = #{startdate},
+            </if>
+            <if test="enddate != null">
+                ENDDATE = #{enddate},
+            </if>
+            <if test="orgId != null and orgId != ''">
+                ORG_ID = #{orgId},
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                ORG_CODE = #{orgCode},
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                CREATOR_ID = #{creatorId},
+            </if>
+            <if test="creator != null and creator != ''">
+                CREATOR = #{creator},
+            </if>
+            <if test="creationtime != null">
+                CREATIONTIME = #{creationtime},
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                MODIFIER_ID = #{modifierId},
+            </if>
+            <if test="modifier != null and modifier != ''">
+                MODIFIER = #{modifier},
+            </if>
+            <if test="modifiedtime != null">
+                MODIFIEDTIME = #{modifiedtime},
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                RG_CODE = #{rgCode},
+            </if>
+            <if test="setYear != null">
+                SET_YEAR = #{setYear},
+            </if>
+            <if test="remark != null and remark != ''">
+                REMARK = #{remark},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.apsl_ele_police_type where ID = #{id}
+    </delete>
+
+</mapper>

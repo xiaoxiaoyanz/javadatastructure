@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace=".dao.AdtfEleWorkFactorDao">
+
+    <resultMap type=".entity.AdtfEleWorkFactor" id="AdtfEleWorkFactorMap">
+        <result property="chrId" column="CHR_ID" jdbcType="VARCHAR"/>
+        <result property="eleCode" column="ELE_CODE" jdbcType="VARCHAR"/>
+        <result property="chrCode" column="CHR_CODE" jdbcType="VARCHAR"/>
+        <result property="chrName" column="CHR_NAME" jdbcType="VARCHAR"/>
+        <result property="chrFullname" column="CHR_FULLNAME" jdbcType="VARCHAR"/>
+        <result property="levelNum" column="LEVEL_NUM" jdbcType="NUMERIC"/>
+        <result property="isLeaf" column="IS_LEAF" jdbcType="NUMERIC"/>
+        <result property="enabled" column="ENABLED" jdbcType="NUMERIC"/>
+        <result property="parentCode" column="PARENT_CODE" jdbcType="VARCHAR"/>
+        <result property="parentId" column="PARENT_ID" jdbcType="VARCHAR"/>
+        <result property="agencyCode" column="AGENCY_CODE" jdbcType="VARCHAR"/>
+        <result property="acctCode" column="ACCT_CODE" jdbcType="VARCHAR"/>
+        <result property="allowAddsub" column="ALLOW_ADDSUB" jdbcType="VARCHAR"/>
+        <result property="rgCode" column="RG_CODE" jdbcType="VARCHAR"/>
+        <result property="setYear" column="SET_YEAR" jdbcType="NUMERIC"/>
+        <result property="createDate" column="CREATE_DATE" jdbcType="VARCHAR"/>
+        <result property="createUser" column="CREATE_USER" jdbcType="VARCHAR"/>
+        <result property="latestOpDate" column="LATEST_OP_DATE" jdbcType="VARCHAR"/>
+        <result property="isDeleted" column="IS_DELETED" jdbcType="NUMERIC"/>
+        <result property="latestOpUser" column="LATEST_OP_USER" jdbcType="VARCHAR"/>
+        <result property="lastVer" column="LAST_VER" jdbcType="NUMERIC"/>
+        <result property="useCount" column="USE_COUNT" jdbcType="NUMERIC"/>
+        <result property="dataFromModule" column="DATA_FROM_MODULE" jdbcType="VARCHAR"/>
+        <result property="srcAgencyCode" column="SRC_AGENCY_CODE" jdbcType="VARCHAR"/>
+        <result property="assCode" column="ASS_CODE" jdbcType="VARCHAR"/>
+        <result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AdtfEleWorkFactorMap">
+        select
+          CHR_ID, ELE_CODE, CHR_CODE, CHR_NAME, CHR_FULLNAME, LEVEL_NUM, IS_LEAF, ENABLED, PARENT_CODE, PARENT_ID, AGENCY_CODE, ACCT_CODE, ALLOW_ADDSUB, RG_CODE, SET_YEAR, CREATE_DATE, CREATE_USER, LATEST_OP_DATE, IS_DELETED, LATEST_OP_USER, LAST_VER, USE_COUNT, DATA_FROM_MODULE, SRC_AGENCY_CODE, ASS_CODE, REMARK
+        from yonyou.adtf_ele_work_factor
+        where CHR_ID = #{chrId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AdtfEleWorkFactorMap">
+        select
+          CHR_ID, ELE_CODE, CHR_CODE, CHR_NAME, CHR_FULLNAME, LEVEL_NUM, IS_LEAF, ENABLED, PARENT_CODE, PARENT_ID, AGENCY_CODE, ACCT_CODE, ALLOW_ADDSUB, RG_CODE, SET_YEAR, CREATE_DATE, CREATE_USER, LATEST_OP_DATE, IS_DELETED, LATEST_OP_USER, LAST_VER, USE_COUNT, DATA_FROM_MODULE, SRC_AGENCY_CODE, ASS_CODE, REMARK
+        from yonyou.adtf_ele_work_factor
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AdtfEleWorkFactorMap">
+        select
+        CHR_ID, ELE_CODE, CHR_CODE, CHR_NAME, CHR_FULLNAME, LEVEL_NUM, IS_LEAF, ENABLED, PARENT_CODE, PARENT_ID,
+        AGENCY_CODE, ACCT_CODE, ALLOW_ADDSUB, RG_CODE, SET_YEAR, CREATE_DATE, CREATE_USER, LATEST_OP_DATE, IS_DELETED,
+        LATEST_OP_USER, LAST_VER, USE_COUNT, DATA_FROM_MODULE, SRC_AGENCY_CODE, ASS_CODE, REMARK
+        from yonyou.adtf_ele_work_factor
+        <where>
+            <if test="chrId != null and chrId != ''">
+                and CHR_ID = #{chrId}
+            </if>
+            <if test="eleCode != null and eleCode != ''">
+                and ELE_CODE = #{eleCode}
+            </if>
+            <if test="chrCode != null and chrCode != ''">
+                and CHR_CODE = #{chrCode}
+            </if>
+            <if test="chrName != null and chrName != ''">
+                and CHR_NAME = #{chrName}
+            </if>
+            <if test="chrFullname != null and chrFullname != ''">
+                and CHR_FULLNAME = #{chrFullname}
+            </if>
+            <if test="levelNum != null">
+                and LEVEL_NUM = #{levelNum}
+            </if>
+            <if test="isLeaf != null">
+                and IS_LEAF = #{isLeaf}
+            </if>
+            <if test="enabled != null">
+                and ENABLED = #{enabled}
+            </if>
+            <if test="parentCode != null and parentCode != ''">
+                and PARENT_CODE = #{parentCode}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                and PARENT_ID = #{parentId}
+            </if>
+            <if test="agencyCode != null and agencyCode != ''">
+                and AGENCY_CODE = #{agencyCode}
+            </if>
+            <if test="acctCode != null and acctCode != ''">
+                and ACCT_CODE = #{acctCode}
+            </if>
+            <if test="allowAddsub != null and allowAddsub != ''">
+                and ALLOW_ADDSUB = #{allowAddsub}
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                and RG_CODE = #{rgCode}
+            </if>
+            <if test="setYear != null">
+                and SET_YEAR = #{setYear}
+            </if>
+            <if test="createDate != null and createDate != ''">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="createUser != null and createUser != ''">
+                and CREATE_USER = #{createUser}
+            </if>
+            <if test="latestOpDate != null and latestOpDate != ''">
+                and LATEST_OP_DATE = #{latestOpDate}
+            </if>
+            <if test="isDeleted != null">
+                and IS_DELETED = #{isDeleted}
+            </if>
+            <if test="latestOpUser != null and latestOpUser != ''">
+                and LATEST_OP_USER = #{latestOpUser}
+            </if>
+            <if test="lastVer != null">
+                and LAST_VER = #{lastVer}
+            </if>
+            <if test="useCount != null">
+                and USE_COUNT = #{useCount}
+            </if>
+            <if test="dataFromModule != null and dataFromModule != ''">
+                and DATA_FROM_MODULE = #{dataFromModule}
+            </if>
+            <if test="srcAgencyCode != null and srcAgencyCode != ''">
+                and SRC_AGENCY_CODE = #{srcAgencyCode}
+            </if>
+            <if test="assCode != null and assCode != ''">
+                and ASS_CODE = #{assCode}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="chrId" useGeneratedKeys="true">
+        insert into yonyou.adtf_ele_work_factor(ELE_CODE, CHR_CODE, CHR_NAME, CHR_FULLNAME, LEVEL_NUM, IS_LEAF, ENABLED, PARENT_CODE, PARENT_ID, AGENCY_CODE, ACCT_CODE, ALLOW_ADDSUB, RG_CODE, SET_YEAR, CREATE_DATE, CREATE_USER, LATEST_OP_DATE, IS_DELETED, LATEST_OP_USER, LAST_VER, USE_COUNT, DATA_FROM_MODULE, SRC_AGENCY_CODE, ASS_CODE, REMARK)
+        values (#{eleCode}, #{chrCode}, #{chrName}, #{chrFullname}, #{levelNum}, #{isLeaf}, #{enabled}, #{parentCode}, #{parentId}, #{agencyCode}, #{acctCode}, #{allowAddsub}, #{rgCode}, #{setYear}, #{createDate}, #{createUser}, #{latestOpDate}, #{isDeleted}, #{latestOpUser}, #{lastVer}, #{useCount}, #{dataFromModule}, #{srcAgencyCode}, #{assCode}, #{remark})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.adtf_ele_work_factor
+        <set>
+            <if test="eleCode != null and eleCode != ''">
+                ELE_CODE = #{eleCode},
+            </if>
+            <if test="chrCode != null and chrCode != ''">
+                CHR_CODE = #{chrCode},
+            </if>
+            <if test="chrName != null and chrName != ''">
+                CHR_NAME = #{chrName},
+            </if>
+            <if test="chrFullname != null and chrFullname != ''">
+                CHR_FULLNAME = #{chrFullname},
+            </if>
+            <if test="levelNum != null">
+                LEVEL_NUM = #{levelNum},
+            </if>
+            <if test="isLeaf != null">
+                IS_LEAF = #{isLeaf},
+            </if>
+            <if test="enabled != null">
+                ENABLED = #{enabled},
+            </if>
+            <if test="parentCode != null and parentCode != ''">
+                PARENT_CODE = #{parentCode},
+            </if>
+            <if test="parentId != null and parentId != ''">
+                PARENT_ID = #{parentId},
+            </if>
+            <if test="agencyCode != null and agencyCode != ''">
+                AGENCY_CODE = #{agencyCode},
+            </if>
+            <if test="acctCode != null and acctCode != ''">
+                ACCT_CODE = #{acctCode},
+            </if>
+            <if test="allowAddsub != null and allowAddsub != ''">
+                ALLOW_ADDSUB = #{allowAddsub},
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                RG_CODE = #{rgCode},
+            </if>
+            <if test="setYear != null">
+                SET_YEAR = #{setYear},
+            </if>
+            <if test="createDate != null and createDate != ''">
+                CREATE_DATE = #{createDate},
+            </if>
+            <if test="createUser != null and createUser != ''">
+                CREATE_USER = #{createUser},
+            </if>
+            <if test="latestOpDate != null and latestOpDate != ''">
+                LATEST_OP_DATE = #{latestOpDate},
+            </if>
+            <if test="isDeleted != null">
+                IS_DELETED = #{isDeleted},
+            </if>
+            <if test="latestOpUser != null and latestOpUser != ''">
+                LATEST_OP_USER = #{latestOpUser},
+            </if>
+            <if test="lastVer != null">
+                LAST_VER = #{lastVer},
+            </if>
+            <if test="useCount != null">
+                USE_COUNT = #{useCount},
+            </if>
+            <if test="dataFromModule != null and dataFromModule != ''">
+                DATA_FROM_MODULE = #{dataFromModule},
+            </if>
+            <if test="srcAgencyCode != null and srcAgencyCode != ''">
+                SRC_AGENCY_CODE = #{srcAgencyCode},
+            </if>
+            <if test="assCode != null and assCode != ''">
+                ASS_CODE = #{assCode},
+            </if>
+            <if test="remark != null and remark != ''">
+                REMARK = #{remark},
+            </if>
+        </set>
+        where CHR_ID = #{chrId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.adtf_ele_work_factor where CHR_ID = #{chrId}
+    </delete>
+
+</mapper>

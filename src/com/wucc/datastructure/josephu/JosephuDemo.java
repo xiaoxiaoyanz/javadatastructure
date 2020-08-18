@@ -98,7 +98,10 @@ public class JosephuDemo {
 
 	public static void main(String[] args) {
 		JosephuDemo josephuDemo = new JosephuDemo();
-		josephuDemo.getCurNode(2,5,2000);
+		long start = System.currentTimeMillis();
+		josephuDemo.getCurNode(2,5,200000);
+		long end = System.currentTimeMillis();
+		System.out.println(end - start);
 	}
 
 

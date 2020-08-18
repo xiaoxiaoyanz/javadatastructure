@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace=".dao.AdtfParentAgencyInfoDao">
+
+    <resultMap type=".entity.AdtfParentAgencyInfo" id="AdtfParentAgencyInfoMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="billId" column="BIll_ID" jdbcType="INTEGER"/>
+        <result property="version" column="VERSION" jdbcType="INTEGER"/>
+        <result property="code" column="CODE" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE" jdbcType="VARCHAR"/>
+        <result property="rgCode" column="RG_CODE" jdbcType="VARCHAR"/>
+        <result property="setYear" column="SET_YEAR" jdbcType="VARCHAR"/>
+        <result property="orgId" column="ORG_ID" jdbcType="VARCHAR"/>
+        <result property="orgCode" column="ORG_CODE" jdbcType="VARCHAR"/>
+        <result property="orgName" column="ORG_NAME" jdbcType="VARCHAR"/>
+        <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+        <result property="isEffect" column="IS_EFFECT" jdbcType="VARCHAR"/>
+        <result property="orgTypeCode" column="ORG_TYPE_CODE" jdbcType="VARCHAR"/>
+        <result property="orgTypeName" column="ORG_TYPE_NAME" jdbcType="VARCHAR"/>
+        <result property="centralDocNoCode" column="CENTRAL_DOC_NO_CODE" jdbcType="VARCHAR"/>
+        <result property="centralDocNoName" column="CENTRAL_DOC_NO_NAME" jdbcType="VARCHAR"/>
+        <result property="docTitle" column="DOC_TITLE" jdbcType="VARCHAR"/>
+        <result property="appropriateTypeCode" column="APPROPRIATE_TYPE_CODE" jdbcType="VARCHAR"/>
+        <result property="appropriateTypeName" column="APPROPRIATE_TYPE_NAME" jdbcType="VARCHAR"/>
+        <result property="docThemeWord" column="DOC_THEME_WORD" jdbcType="VARCHAR"/>
+        <result property="releaseAmount" column="RELEASE_AMOUNT" jdbcType="NUMERIC"/>
+        <result property="releaseDocDate" column="RELEASE_DOC_DATE" jdbcType="TIMESTAMP"/>
+        <result property="releaseDocOrgCode" column="RELEASE_DOC_ORG_CODE" jdbcType="VARCHAR"/>
+        <result property="releaseDocOrgName" column="RELEASE_DOC_ORG_NAME" jdbcType="VARCHAR"/>
+        <result property="docContentIntroduction" column="DOC_CONTENT_INTRODUCTION" jdbcType="VARCHAR"/>
+        <result property="auditorId" column="AUDITOR_ID" jdbcType="VARCHAR"/>
+        <result property="auditor" column="AUDITOR" jdbcType="VARCHAR"/>
+        <result property="auditortime" column="AUDITORTIME" jdbcType="TIMESTAMP"/>
+        <result property="creatorId" column="CREATOR_ID" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="creationtime" column="CREATIONTIME" jdbcType="TIMESTAMP"/>
+        <result property="modifierId" column="MODIFIER_ID" jdbcType="VARCHAR"/>
+        <result property="modifier" column="MODIFIER" jdbcType="VARCHAR"/>
+        <result property="modifiedtime" column="MODIFIEDTIME" jdbcType="TIMESTAMP"/>
+        <result property="remark" column="REMARK" jdbcType="VARCHAR"/>
+        <result property="sysType" column="SYS_TYPE" jdbcType="VARCHAR"/>
+        <result property="publicNoCode" column="PUBLIC_NO_CODE" jdbcType="VARCHAR"/>
+        <result property="publicNoName" column="PUBLIC_NO_NAME" jdbcType="VARCHAR"/>
+        <result property="fundsYear" column="FUNDS_YEAR" jdbcType="INTEGER"/>
+        <result property="releasedAmount" column="RELEASED_AMOUNT" jdbcType="NUMERIC"/>
+        <result property="releasethisAmount" column="RELEASETHIS_AMOUNT" jdbcType="NUMERIC"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AdtfParentAgencyInfoMap">
+        select
+          ID, BIll_ID, VERSION, CODE, TYPE, RG_CODE, SET_YEAR, ORG_ID, ORG_CODE, ORG_NAME, STATUS, IS_EFFECT, ORG_TYPE_CODE, ORG_TYPE_NAME, CENTRAL_DOC_NO_CODE, CENTRAL_DOC_NO_NAME, DOC_TITLE, APPROPRIATE_TYPE_CODE, APPROPRIATE_TYPE_NAME, DOC_THEME_WORD, RELEASE_AMOUNT, RELEASE_DOC_DATE, RELEASE_DOC_ORG_CODE, RELEASE_DOC_ORG_NAME, DOC_CONTENT_INTRODUCTION, AUDITOR_ID, AUDITOR, AUDITORTIME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, REMARK, SYS_TYPE, PUBLIC_NO_CODE, PUBLIC_NO_NAME, FUNDS_YEAR, RELEASED_AMOUNT, RELEASETHIS_AMOUNT
+        from yonyou.adtf_parent_agency_info
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AdtfParentAgencyInfoMap">
+        select
+          ID, BIll_ID, VERSION, CODE, TYPE, RG_CODE, SET_YEAR, ORG_ID, ORG_CODE, ORG_NAME, STATUS, IS_EFFECT, ORG_TYPE_CODE, ORG_TYPE_NAME, CENTRAL_DOC_NO_CODE, CENTRAL_DOC_NO_NAME, DOC_TITLE, APPROPRIATE_TYPE_CODE, APPROPRIATE_TYPE_NAME, DOC_THEME_WORD, RELEASE_AMOUNT, RELEASE_DOC_DATE, RELEASE_DOC_ORG_CODE, RELEASE_DOC_ORG_NAME, DOC_CONTENT_INTRODUCTION, AUDITOR_ID, AUDITOR, AUDITORTIME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, REMARK, SYS_TYPE, PUBLIC_NO_CODE, PUBLIC_NO_NAME, FUNDS_YEAR, RELEASED_AMOUNT, RELEASETHIS_AMOUNT
+        from yonyou.adtf_parent_agency_info
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AdtfParentAgencyInfoMap">
+        select
+        ID, BIll_ID, VERSION, CODE, TYPE, RG_CODE, SET_YEAR, ORG_ID, ORG_CODE, ORG_NAME, STATUS, IS_EFFECT,
+        ORG_TYPE_CODE, ORG_TYPE_NAME, CENTRAL_DOC_NO_CODE, CENTRAL_DOC_NO_NAME, DOC_TITLE, APPROPRIATE_TYPE_CODE,
+        APPROPRIATE_TYPE_NAME, DOC_THEME_WORD, RELEASE_AMOUNT, RELEASE_DOC_DATE, RELEASE_DOC_ORG_CODE,
+        RELEASE_DOC_ORG_NAME, DOC_CONTENT_INTRODUCTION, AUDITOR_ID, AUDITOR, AUDITORTIME, CREATOR_ID, CREATOR,
+        CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, REMARK, SYS_TYPE, PUBLIC_NO_CODE, PUBLIC_NO_NAME, FUNDS_YEAR,
+        RELEASED_AMOUNT, RELEASETHIS_AMOUNT
+        from yonyou.adtf_parent_agency_info
+        <where>
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="billId != null">
+                and BIll_ID = #{billId}
+            </if>
+            <if test="version != null">
+                and VERSION = #{version}
+            </if>
+            <if test="code != null and code != ''">
+                and CODE = #{code}
+            </if>
+            <if test="type != null and type != ''">
+                and TYPE = #{type}
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                and RG_CODE = #{rgCode}
+            </if>
+            <if test="setYear != null and setYear != ''">
+                and SET_YEAR = #{setYear}
+            </if>
+            <if test="orgId != null and orgId != ''">
+                and ORG_ID = #{orgId}
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                and ORG_CODE = #{orgCode}
+            </if>
+            <if test="orgName != null and orgName != ''">
+                and ORG_NAME = #{orgName}
+            </if>
+            <if test="status != null and status != ''">
+                and STATUS = #{status}
+            </if>
+            <if test="isEffect != null and isEffect != ''">
+                and IS_EFFECT = #{isEffect}
+            </if>
+            <if test="orgTypeCode != null and orgTypeCode != ''">
+                and ORG_TYPE_CODE = #{orgTypeCode}
+            </if>
+            <if test="orgTypeName != null and orgTypeName != ''">
+                and ORG_TYPE_NAME = #{orgTypeName}
+            </if>
+            <if test="centralDocNoCode != null and centralDocNoCode != ''">
+                and CENTRAL_DOC_NO_CODE = #{centralDocNoCode}
+            </if>
+            <if test="centralDocNoName != null and centralDocNoName != ''">
+                and CENTRAL_DOC_NO_NAME = #{centralDocNoName}
+            </if>
+            <if test="docTitle != null and docTitle != ''">
+                and DOC_TITLE = #{docTitle}
+            </if>
+            <if test="appropriateTypeCode != null and appropriateTypeCode != ''">
+                and APPROPRIATE_TYPE_CODE = #{appropriateTypeCode}
+            </if>
+            <if test="appropriateTypeName != null and appropriateTypeName != ''">
+                and APPROPRIATE_TYPE_NAME = #{appropriateTypeName}
+            </if>
+            <if test="docThemeWord != null and docThemeWord != ''">
+                and DOC_THEME_WORD = #{docThemeWord}
+            </if>
+            <if test="releaseAmount != null">
+                and RELEASE_AMOUNT = #{releaseAmount}
+            </if>
+            <if test="releaseDocDate != null">
+                and RELEASE_DOC_DATE = #{releaseDocDate}
+            </if>
+            <if test="releaseDocOrgCode != null and releaseDocOrgCode != ''">
+                and RELEASE_DOC_ORG_CODE = #{releaseDocOrgCode}
+            </if>
+            <if test="releaseDocOrgName != null and releaseDocOrgName != ''">
+                and RELEASE_DOC_ORG_NAME = #{releaseDocOrgName}
+            </if>
+            <if test="docContentIntroduction != null and docContentIntroduction != ''">
+                and DOC_CONTENT_INTRODUCTION = #{docContentIntroduction}
+            </if>
+            <if test="auditorId != null and auditorId != ''">
+                and AUDITOR_ID = #{auditorId}
+            </if>
+            <if test="auditor != null and auditor != ''">
+                and AUDITOR = #{auditor}
+            </if>
+            <if test="auditortime != null">
+                and AUDITORTIME = #{auditortime}
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="creator != null and creator != ''">
+                and CREATOR = #{creator}
+            </if>
+            <if test="creationtime != null">
+                and CREATIONTIME = #{creationtime}
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                and MODIFIER_ID = #{modifierId}
+            </if>
+            <if test="modifier != null and modifier != ''">
+                and MODIFIER = #{modifier}
+            </if>
+            <if test="modifiedtime != null">
+                and MODIFIEDTIME = #{modifiedtime}
+            </if>
+            <if test="remark != null and remark != ''">
+                and REMARK = #{remark}
+            </if>
+            <if test="sysType != null and sysType != ''">
+                and SYS_TYPE = #{sysType}
+            </if>
+            <if test="publicNoCode != null and publicNoCode != ''">
+                and PUBLIC_NO_CODE = #{publicNoCode}
+            </if>
+            <if test="publicNoName != null and publicNoName != ''">
+                and PUBLIC_NO_NAME = #{publicNoName}
+            </if>
+            <if test="fundsYear != null">
+                and FUNDS_YEAR = #{fundsYear}
+            </if>
+            <if test="releasedAmount != null">
+                and RELEASED_AMOUNT = #{releasedAmount}
+            </if>
+            <if test="releasethisAmount != null">
+                and RELEASETHIS_AMOUNT = #{releasethisAmount}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into yonyou.adtf_parent_agency_info(BIll_ID, VERSION, CODE, TYPE, RG_CODE, SET_YEAR, ORG_ID, ORG_CODE, ORG_NAME, STATUS, IS_EFFECT, ORG_TYPE_CODE, ORG_TYPE_NAME, CENTRAL_DOC_NO_CODE, CENTRAL_DOC_NO_NAME, DOC_TITLE, APPROPRIATE_TYPE_CODE, APPROPRIATE_TYPE_NAME, DOC_THEME_WORD, RELEASE_AMOUNT, RELEASE_DOC_DATE, RELEASE_DOC_ORG_CODE, RELEASE_DOC_ORG_NAME, DOC_CONTENT_INTRODUCTION, AUDITOR_ID, AUDITOR, AUDITORTIME, CREATOR_ID, CREATOR, CREATIONTIME, MODIFIER_ID, MODIFIER, MODIFIEDTIME, REMARK, SYS_TYPE, PUBLIC_NO_CODE, PUBLIC_NO_NAME, FUNDS_YEAR, RELEASED_AMOUNT, RELEASETHIS_AMOUNT)
+        values (#{billId}, #{version}, #{code}, #{type}, #{rgCode}, #{setYear}, #{orgId}, #{orgCode}, #{orgName}, #{status}, #{isEffect}, #{orgTypeCode}, #{orgTypeName}, #{centralDocNoCode}, #{centralDocNoName}, #{docTitle}, #{appropriateTypeCode}, #{appropriateTypeName}, #{docThemeWord}, #{releaseAmount}, #{releaseDocDate}, #{releaseDocOrgCode}, #{releaseDocOrgName}, #{docContentIntroduction}, #{auditorId}, #{auditor}, #{auditortime}, #{creatorId}, #{creator}, #{creationtime}, #{modifierId}, #{modifier}, #{modifiedtime}, #{remark}, #{sysType}, #{publicNoCode}, #{publicNoName}, #{fundsYear}, #{releasedAmount}, #{releasethisAmount})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyou.adtf_parent_agency_info
+        <set>
+            <if test="billId != null">
+                BIll_ID = #{billId},
+            </if>
+            <if test="version != null">
+                VERSION = #{version},
+            </if>
+            <if test="code != null and code != ''">
+                CODE = #{code},
+            </if>
+            <if test="type != null and type != ''">
+                TYPE = #{type},
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                RG_CODE = #{rgCode},
+            </if>
+            <if test="setYear != null and setYear != ''">
+                SET_YEAR = #{setYear},
+            </if>
+            <if test="orgId != null and orgId != ''">
+                ORG_ID = #{orgId},
+            </if>
+            <if test="orgCode != null and orgCode != ''">
+                ORG_CODE = #{orgCode},
+            </if>
+            <if test="orgName != null and orgName != ''">
+                ORG_NAME = #{orgName},
+            </if>
+            <if test="status != null and status != ''">
+                STATUS = #{status},
+            </if>
+            <if test="isEffect != null and isEffect != ''">
+                IS_EFFECT = #{isEffect},
+            </if>
+            <if test="orgTypeCode != null and orgTypeCode != ''">
+                ORG_TYPE_CODE = #{orgTypeCode},
+            </if>
+            <if test="orgTypeName != null and orgTypeName != ''">
+                ORG_TYPE_NAME = #{orgTypeName},
+            </if>
+            <if test="centralDocNoCode != null and centralDocNoCode != ''">
+                CENTRAL_DOC_NO_CODE = #{centralDocNoCode},
+            </if>
+            <if test="centralDocNoName != null and centralDocNoName != ''">
+                CENTRAL_DOC_NO_NAME = #{centralDocNoName},
+            </if>
+            <if test="docTitle != null and docTitle != ''">
+                DOC_TITLE = #{docTitle},
+            </if>
+            <if test="appropriateTypeCode != null and appropriateTypeCode != ''">
+                APPROPRIATE_TYPE_CODE = #{appropriateTypeCode},
+            </if>
+            <if test="appropriateTypeName != null and appropriateTypeName != ''">
+                APPROPRIATE_TYPE_NAME = #{appropriateTypeName},
+            </if>
+            <if test="docThemeWord != null and docThemeWord != ''">
+                DOC_THEME_WORD = #{docThemeWord},
+            </if>
+            <if test="releaseAmount != null">
+                RELEASE_AMOUNT = #{releaseAmount},
+            </if>
+            <if test="releaseDocDate != null">
+                RELEASE_DOC_DATE = #{releaseDocDate},
+            </if>
+            <if test="releaseDocOrgCode != null and releaseDocOrgCode != ''">
+                RELEASE_DOC_ORG_CODE = #{releaseDocOrgCode},
+            </if>
+            <if test="releaseDocOrgName != null and releaseDocOrgName != ''">
+                RELEASE_DOC_ORG_NAME = #{releaseDocOrgName},
+            </if>
+            <if test="docContentIntroduction != null and docContentIntroduction != ''">
+                DOC_CONTENT_INTRODUCTION = #{docContentIntroduction},
+            </if>
+            <if test="auditorId != null and auditorId != ''">
+                AUDITOR_ID = #{auditorId},
+            </if>
+            <if test="auditor != null and auditor != ''">
+                AUDITOR = #{auditor},
+            </if>
+            <if test="auditortime != null">
+                AUDITORTIME = #{auditortime},
+            </if>
+            <if test="creatorId != null and creatorId != ''">
+                CREATOR_ID = #{creatorId},
+            </if>
+            <if test="creator != null and creator != ''">
+                CREATOR = #{creator},
+            </if>
+            <if test="creationtime != null">
+                CREATIONTIME = #{creationtime},
+            </if>
+            <if test="modifierId != null and modifierId != ''">
+                MODIFIER_ID = #{modifierId},
+            </if>
+            <if test="modifier != null and modifier != ''">
+                MODIFIER = #{modifier},
+            </if>
+            <if test="modifiedtime != null">
+                MODIFIEDTIME = #{modifiedtime},
+            </if>
+            <if test="remark != null and remark != ''">
+                REMARK = #{remark},
+            </if>
+            <if test="sysType != null and sysType != ''">
+                SYS_TYPE = #{sysType},
+            </if>
+            <if test="publicNoCode != null and publicNoCode != ''">
+                PUBLIC_NO_CODE = #{publicNoCode},
+            </if>
+            <if test="publicNoName != null and publicNoName != ''">
+                PUBLIC_NO_NAME = #{publicNoName},
+            </if>
+            <if test="fundsYear != null">
+                FUNDS_YEAR = #{fundsYear},
+            </if>
+            <if test="releasedAmount != null">
+                RELEASED_AMOUNT = #{releasedAmount},
+            </if>
+            <if test="releasethisAmount != null">
+                RELEASETHIS_AMOUNT = #{releasethisAmount},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyou.adtf_parent_agency_info where ID = #{id}
+    </delete>
+
+</mapper>
