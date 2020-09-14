@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace=".dao.AdtfGlBalTempDao">
+
+    <resultMap type=".entity.AdtfGlBalTemp" id="AdtfGlBalTempMap">
+        <result property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="billId" column="BILL_ID" jdbcType="VARCHAR"/>
+        <result property="rgCode" column="RG_CODE" jdbcType="VARCHAR"/>
+        <result property="setYear" column="SET_YEAR" jdbcType="NUMERIC"/>
+        <result property="jzpzCode" column="JZPZ_CODE" jdbcType="VARCHAR"/>
+        <result property="jzpzType" column="JZPZ_TYPE" jdbcType="VARCHAR"/>
+        <result property="jzpzDate" column="JZPZ_DATE" jdbcType="TIMESTAMP"/>
+        <result property="jzpzAbstract" column="JZPZ_ABSTRACT" jdbcType="VARCHAR"/>
+        <result property="jzpzNum" column="JZPZ_NUM" jdbcType="VARCHAR"/>
+        <result property="accoCode" column="ACCO_CODE" jdbcType="VARCHAR"/>
+        <result property="accoName" column="ACCO_NAME" jdbcType="VARCHAR"/>
+        <result property="docCode" column="DOC_CODE" jdbcType="VARCHAR"/>
+        <result property="docName" column="DOC_NAME" jdbcType="VARCHAR"/>
+        <result property="drAmt" column="DR_AMT" jdbcType="NUMERIC"/>
+        <result property="crAmt" column="CR_AMT" jdbcType="NUMERIC"/>
+        <result property="finaTypeCode" column="FINA_TYPE_CODE" jdbcType="VARCHAR"/>
+        <result property="finaTypeName" column="FINA_TYPE_NAME" jdbcType="VARCHAR"/>
+        <result property="accounter" column="ACCOUNTER" jdbcType="VARCHAR"/>
+        <result property="jzpzSource" column="JZPZ_SOURCE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AdtfGlBalTempMap">
+        select
+          ID, BILL_ID, RG_CODE, SET_YEAR, JZPZ_CODE, JZPZ_TYPE, JZPZ_DATE, JZPZ_ABSTRACT, JZPZ_NUM, ACCO_CODE, ACCO_NAME, DOC_CODE, DOC_NAME, DR_AMT, CR_AMT, FINA_TYPE_CODE, FINA_TYPE_NAME, ACCOUNTER, JZPZ_SOURCE
+        from yonyoucc.adtf_gl_bal_temp
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AdtfGlBalTempMap">
+        select
+          ID, BILL_ID, RG_CODE, SET_YEAR, JZPZ_CODE, JZPZ_TYPE, JZPZ_DATE, JZPZ_ABSTRACT, JZPZ_NUM, ACCO_CODE, ACCO_NAME, DOC_CODE, DOC_NAME, DR_AMT, CR_AMT, FINA_TYPE_CODE, FINA_TYPE_NAME, ACCOUNTER, JZPZ_SOURCE
+        from yonyoucc.adtf_gl_bal_temp
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AdtfGlBalTempMap">
+        select
+        ID, BILL_ID, RG_CODE, SET_YEAR, JZPZ_CODE, JZPZ_TYPE, JZPZ_DATE, JZPZ_ABSTRACT, JZPZ_NUM, ACCO_CODE, ACCO_NAME,
+        DOC_CODE, DOC_NAME, DR_AMT, CR_AMT, FINA_TYPE_CODE, FINA_TYPE_NAME, ACCOUNTER, JZPZ_SOURCE
+        from yonyoucc.adtf_gl_bal_temp
+        <where>
+            <if test="id != null and id != ''">
+                and ID = #{id}
+            </if>
+            <if test="billId != null and billId != ''">
+                and BILL_ID = #{billId}
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                and RG_CODE = #{rgCode}
+            </if>
+            <if test="setYear != null">
+                and SET_YEAR = #{setYear}
+            </if>
+            <if test="jzpzCode != null and jzpzCode != ''">
+                and JZPZ_CODE = #{jzpzCode}
+            </if>
+            <if test="jzpzType != null and jzpzType != ''">
+                and JZPZ_TYPE = #{jzpzType}
+            </if>
+            <if test="jzpzDate != null">
+                and JZPZ_DATE = #{jzpzDate}
+            </if>
+            <if test="jzpzAbstract != null and jzpzAbstract != ''">
+                and JZPZ_ABSTRACT = #{jzpzAbstract}
+            </if>
+            <if test="jzpzNum != null and jzpzNum != ''">
+                and JZPZ_NUM = #{jzpzNum}
+            </if>
+            <if test="accoCode != null and accoCode != ''">
+                and ACCO_CODE = #{accoCode}
+            </if>
+            <if test="accoName != null and accoName != ''">
+                and ACCO_NAME = #{accoName}
+            </if>
+            <if test="docCode != null and docCode != ''">
+                and DOC_CODE = #{docCode}
+            </if>
+            <if test="docName != null and docName != ''">
+                and DOC_NAME = #{docName}
+            </if>
+            <if test="drAmt != null">
+                and DR_AMT = #{drAmt}
+            </if>
+            <if test="crAmt != null">
+                and CR_AMT = #{crAmt}
+            </if>
+            <if test="finaTypeCode != null and finaTypeCode != ''">
+                and FINA_TYPE_CODE = #{finaTypeCode}
+            </if>
+            <if test="finaTypeName != null and finaTypeName != ''">
+                and FINA_TYPE_NAME = #{finaTypeName}
+            </if>
+            <if test="accounter != null and accounter != ''">
+                and ACCOUNTER = #{accounter}
+            </if>
+            <if test="jzpzSource != null and jzpzSource != ''">
+                and JZPZ_SOURCE = #{jzpzSource}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into yonyoucc.adtf_gl_bal_temp(BILL_ID, RG_CODE, SET_YEAR, JZPZ_CODE, JZPZ_TYPE, JZPZ_DATE, JZPZ_ABSTRACT, JZPZ_NUM, ACCO_CODE, ACCO_NAME, DOC_CODE, DOC_NAME, DR_AMT, CR_AMT, FINA_TYPE_CODE, FINA_TYPE_NAME, ACCOUNTER, JZPZ_SOURCE)
+        values (#{billId}, #{rgCode}, #{setYear}, #{jzpzCode}, #{jzpzType}, #{jzpzDate}, #{jzpzAbstract}, #{jzpzNum}, #{accoCode}, #{accoName}, #{docCode}, #{docName}, #{drAmt}, #{crAmt}, #{finaTypeCode}, #{finaTypeName}, #{accounter}, #{jzpzSource})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yonyoucc.adtf_gl_bal_temp
+        <set>
+            <if test="billId != null and billId != ''">
+                BILL_ID = #{billId},
+            </if>
+            <if test="rgCode != null and rgCode != ''">
+                RG_CODE = #{rgCode},
+            </if>
+            <if test="setYear != null">
+                SET_YEAR = #{setYear},
+            </if>
+            <if test="jzpzCode != null and jzpzCode != ''">
+                JZPZ_CODE = #{jzpzCode},
+            </if>
+            <if test="jzpzType != null and jzpzType != ''">
+                JZPZ_TYPE = #{jzpzType},
+            </if>
+            <if test="jzpzDate != null">
+                JZPZ_DATE = #{jzpzDate},
+            </if>
+            <if test="jzpzAbstract != null and jzpzAbstract != ''">
+                JZPZ_ABSTRACT = #{jzpzAbstract},
+            </if>
+            <if test="jzpzNum != null and jzpzNum != ''">
+                JZPZ_NUM = #{jzpzNum},
+            </if>
+            <if test="accoCode != null and accoCode != ''">
+                ACCO_CODE = #{accoCode},
+            </if>
+            <if test="accoName != null and accoName != ''">
+                ACCO_NAME = #{accoName},
+            </if>
+            <if test="docCode != null and docCode != ''">
+                DOC_CODE = #{docCode},
+            </if>
+            <if test="docName != null and docName != ''">
+                DOC_NAME = #{docName},
+            </if>
+            <if test="drAmt != null">
+                DR_AMT = #{drAmt},
+            </if>
+            <if test="crAmt != null">
+                CR_AMT = #{crAmt},
+            </if>
+            <if test="finaTypeCode != null and finaTypeCode != ''">
+                FINA_TYPE_CODE = #{finaTypeCode},
+            </if>
+            <if test="finaTypeName != null and finaTypeName != ''">
+                FINA_TYPE_NAME = #{finaTypeName},
+            </if>
+            <if test="accounter != null and accounter != ''">
+                ACCOUNTER = #{accounter},
+            </if>
+            <if test="jzpzSource != null and jzpzSource != ''">
+                JZPZ_SOURCE = #{jzpzSource},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yonyoucc.adtf_gl_bal_temp where ID = #{id}
+    </delete>
+
+</mapper>
